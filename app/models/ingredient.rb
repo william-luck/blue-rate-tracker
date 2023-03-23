@@ -3,10 +3,14 @@ class Ingredient < ApplicationRecord
     belongs_to :menu_item
     belongs_to :product
 
-    def find_price_per_quantity
+    def price_of_ingredient
         product = self.product
         calculated_price = self.quantity * product.price 
         calculated_price
+    end
+
+    def product_name
+        Product.find(self.product_id).name
     end
 
 end

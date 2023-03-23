@@ -1,5 +1,5 @@
 class IngredientSerializer < ActiveModel::Serializer
-  attributes :quantity
+  attributes :price_of_ingredient, :product_name
 
   belongs_to :menu_item
   belongs_to :product
