@@ -8,7 +8,7 @@
 
 
 # Create user
-User.create(name: 'Restaurant Manager', email: 'management@management.com', password: 'blue_rate')
+user = User.create(name: 'Restaurant Manager', email: 'management@management.com', password: 'blue_rate')
 
 price_data = [
     {
@@ -20,7 +20,7 @@ price_data = [
         price: 2000,
     }, 
     {
-        name: 'eggs', 
+        name: 'egg', 
         price: 520,
     }, 
     {
@@ -64,7 +64,7 @@ price_data = [
         price: 1000,
     }, 
     {
-        name: 'Flour', 
+        name: 'flour', 
         price: 160,
     }, 
     {
@@ -139,16 +139,551 @@ price_data = [
         name: 'bitters', 
         price: 5000,
     }, 
+    {
+        name: 'coca cola', 
+        price: 400,
+    }, 
 ]
 
 # Create products
 price_data.each { |product| 
-    new_prouct = Product.create(
-                    name: product[:name],
-                    price: product[:price]
-                )    
+    Product.create(
+        name: product[:name],
+        price: product[:price]
+    )    
 }
 
+# Create menus
+starters_menu = Menu.create(user_id: user.id, name: 'Starters')
+main_menu = Menu.create(user_id: user.id, name: 'Main Dishes')
+cocktail_menu = Menu.create(user_id: user.id, name: 'Cocktails')
+
+
 # Create name of MenuItem
-# roasted_red = MenuItem.create
+# roasted_red = MenuItem.create(
+#     name: 'Roasted Red Pepper and Tomato Soup'
+# )
+#     Ingredient.create(
+#         product_id: 9,
+#         menu_item_id: roasted_red.id,
+#         quantity: 250,
+#     )
+
+menu_items = [
+    {
+        name: 'Roasted Red Pepper and Tomato Soup', 
+        menu_id: starters_menu.id,
+        ingredients: [
+            {
+                name: 'bell pepper',
+                quantity: 0.250
+            },
+            {
+                name: 'onion',
+                quantity: 0.150
+            },
+            {
+                name: 'tomato',
+                quantity: 0.400,
+            },
+            {
+                name: 'potato',
+                quantity: 0.150
+            },
+            {
+                name: 'olive oil',
+                quantity: 0.045
+            },
+            {
+                name: 'garlic',
+                quantity: 0.007
+            },
+            {
+                name: 'salt',
+                quantity: 0.002
+            },
+            {
+                name: 'oregano',
+                quantity: 0.006
+            },
+        ]
+    },
+    {
+        name: 'Veggie Kebabs, Guacamole, and Salad', 
+        menu_id: starters_menu.id,
+        ingredients: [
+            {
+                name: "avocado",
+                quantity: 0.200
+            },
+            {
+                name: "tomato",
+                quantity: 0.100
+            },
+            {
+                name: "lemon juice",
+                quantity: 0.022
+            },
+            {
+                name: "mushroom",
+                quantity: 0.250
+            },
+            {
+                name: "bread",
+                quantity: 0.070
+            },
+            {
+                name: "onion",
+                quantity: 0.150
+            },
+            {
+                name: "bell pepper",
+                quantity: 0.150
+            }
+        ]
+    },
+    {
+        name: "Southern Tomato Gravy",
+        menu_id: starters_menu.id,
+        ingredients: [
+            {
+                name: 'butter',
+                quantity: 0.028,
+            },
+            {
+                name: 'onion',
+                quantity: 0.026,
+            },
+            {
+                name: 'garlic',
+                quantity: 0.007,
+            },
+            {
+                name: 'flour',
+                quantity: 0.021,
+            },
+            {
+                name: 'tomato',
+                quantity: 0.300,
+            },
+            {
+                name: 'milk',
+                quantity: 0.237,
+            }
+        ]
+    },
+    {
+        name: "Spring Onion Soup",
+        menu_id: starters_menu.id,
+        ingredients: [
+            {
+                name: 'scallion',
+                quantity: 0.025,
+            },
+            {
+                name: 'onion',
+                quantity: 0.150,
+            },
+            {
+                name: 'potato',
+                quantity: 0.170,
+            },
+            {
+                name: 'garlic',
+                quantity: 0.007,
+            },
+            {
+                name: 'butter',
+                quantity: 0.014,
+            },
+            {
+                name: 'lemon juice',
+                quantity: 0.005,
+            },
+            {
+                name: 'salt',
+                quantity: 0.005,
+            }
+        ]
+    },
+    {
+        name: "Avocado Toast",
+        menu_id: starters_menu.id,
+        ingredients: [
+            {
+                name: 'bread',
+                quantity: 0.135,
+            },
+            {
+                name: 'avocado',
+                quantity: 0.200,
+            },
+            {
+                name: 'onion',
+                quantity: 0.150,
+            },
+            {
+                name: 'tomato',
+                quantity: 0.150,
+            },
+            {
+                name: 'salt',
+                quantity: 0.005,
+            },
+            {
+                name: 'lemon juice',
+                quantity: 0.005,
+            },
+            {
+                name: 'butter',
+                quantity: 0.015,
+            }
+        ]
+    },
+    {
+        name: "Sunday Morning Breakfast Hash",
+        menu_id: main_menu.id,
+        ingredients: [
+            {
+                name: 'olive oil',
+                quantity: 0.045,
+            },
+            {
+                name: 'potato',
+                quantity: 0.400,
+            },
+            {
+                name: 'egg',
+                # Refers to half a dozen
+                quantity: 0.5,
+            },
+            {
+                name: 'bell pepper',
+                quantity: 0.100,
+            },
+            {
+                name: 'onion',
+                quantity: 0.150,
+            },
+            {
+                name: 'avocado',
+                quantity: 0.200,
+            },
+            {
+                name: 'tomato',
+                quantity: 0.100,
+            },
+            {
+                name: 'salt',
+                quantity: 0.005,
+            },
+        ]
+    },
+    {
+        name: "Chicken Souvlaki",
+        menu_id: main_menu.id,
+        ingredients: [
+            {
+                name: 'lemon juice',
+                quantity: 0.045,
+            },
+            {
+                name: 'olive oil',
+                quantity: 0.078,
+            },
+            {
+                name: 'soy sauce',
+                quantity: 0.059,
+            },
+            {
+                name: 'oregano',
+                quantity: 0.005,
+            },
+            {
+                name: 'garlic',
+                quantity: 0.021,
+            },
+            {
+                name: 'chicken breast',
+                quantity: 0.500,
+            },
+            {
+                name: 'onion',
+                quantity: 0.150,
+            }
+        ]
+    },
+    {
+        name: "Hibachi-style Fried Rice",
+        menu_id: main_menu.id,
+        ingredients: [
+            {
+                name: 'olive oil',
+                quantity: 0.060,
+            },
+            {
+                name: 'egg',
+                quantity: 0.166,
+            },
+            {
+                name: 'chicken breast',
+                quantity: 0.140,
+            },
+            {
+                name: 'scallion',
+                quantity: 0.050,
+            },
+            {
+                name: 'garlic',
+                quantity: 0.017,
+            },
+            {
+                name: 'rice',
+                quantity: 0.400,
+            },
+            {
+                name: 'soy sauce',
+                quantity: 0.044,
+            }
+        ]
+    },
+    {
+        name: "Guacamole Egg Salad Sandwich",
+        menu_id: main_menu.id,
+        ingredients: [
+            {
+                name: 'bread',
+                quantity: 0.130,
+            },
+            {
+                name: 'butter',
+                quantity: 0.028,
+            },
+            {
+                name: 'egg',
+                quantity: 0.166,
+            },
+            {
+                name: 'salt',
+                quantity: 0.005,
+            },
+            {
+                name: 'avocado',
+                quantity: 0.140,
+            },
+            {
+                name: 'lemon juice',
+                quantity: 0.010,
+            },
+            {
+                name: 'tomato',
+                quantity: 0.013,
+            },
+            {
+                name: 'onion',
+                quantity: 0.005,
+            }
+        ]
+    },
+    {
+        name: "Baked Lemon Chicken",
+        menu_id: main_menu.id,
+        ingredients: [
+            {
+                name: 'butter',
+                quantity: 0.113,
+            },
+            {
+                name: 'chicken breast',
+                quantity: 0.400,
+            },
+            {
+                name: 'flour',
+                quantity: 0.070,
+            },
+            {
+                name: 'lemon juice',
+                quantity: 0.078,
+            },
+            {
+                name: 'onion',
+                quantity: 0.010,
+            },
+            {
+                name: 'garlic',
+                quantity: 0.007,
+            },
+            {
+                name: 'salt',
+                quantity: 0.005,
+            }
+        ]
+    },
+    {
+        name: "Baked Lemon Chicken",
+        menu_id: cocktail_menu.id,
+        ingredients: [
+            {
+                name: 'butter',
+                quantity: 0.113,
+            },
+            {
+                name: 'chicken breast',
+                quantity: 0.400,
+            },
+            {
+                name: 'flour',
+                quantity: 0.070,
+            },
+            {
+                name: 'lemon juice',
+                quantity: 0.078,
+            },
+            {
+                name: 'onion',
+                quantity: 0.010,
+            },
+            {
+                name: 'garlic',
+                quantity: 0.007,
+            },
+            {
+                name: 'salt',
+                quantity: 0.005,
+            }
+        ]
+    },
+    {
+        name: "Whiskey Sour",
+        menu_id: cocktail_menu.id,
+        ingredients: [
+            {
+                name: 'simple syrup',
+                quantity: 0.022,
+            },
+            {
+                name: 'lemon juice',
+                quantity: 0.022,
+            },
+            {
+                name: 'whiskey',
+                quantity: 0.060,
+            },
+            {
+                name: 'egg',
+                quantity: 0.08,
+            }
+        ]
+    },
+    {
+        name: "Vodka Sour",
+        menu_id: cocktail_menu.id,
+        ingredients: [
+            {
+                name: 'simple syrup',
+                quantity: 0.022,
+            },
+            {
+                name: 'lemon juice',
+                quantity: 0.022,
+            },
+            {
+                name: 'vodka',
+                quantity: 0.060,
+            },
+            {
+                name: 'egg',
+                quantity: 0.08,
+            }
+        ]
+    },
+    {
+        name: "Old Fashioned",
+        menu_id: cocktail_menu.id,
+        ingredients: [
+            {
+                name: 'simple syrup',
+                quantity: 0.015,
+            },
+            {
+                name: 'bitters',
+                quantity: 0.002,
+            },
+            {
+                name: 'whiskey',
+                quantity: 0.060,
+            }
+        ]
+    },
+    {
+        name: "Texas Tea",
+        menu_id: cocktail_menu.id,
+        ingredients: [
+            {
+                name: 'vodka',
+                quantity: 0.030,
+            },
+            {
+                name: 'gin',
+                quantity: 0.030,
+            },
+            {
+                name: 'rum',
+                quantity: 0.030,
+            },
+            {
+                name: 'triple sec',
+                quantity: 0.030,
+            },
+            {
+                name: 'simple syrup',
+                quantity: 0.022,
+            },
+            {
+                name: 'tequilla',
+                quantity: 0.022,
+            },
+            {
+                name: 'coca cola',
+                quantity: 0.200,
+            }
+        ]
+    },
+    {
+        name: "Blue Lagoon",
+        menu_id: cocktail_menu.id,
+        ingredients: [
+            {
+                name: 'blue curacao',
+                quantity: 0.030,
+            },
+            {
+                name: 'vodka',
+                quantity: 0.030,
+            },
+            {
+                name: 'lemonade',
+                quantity: 0.120,
+            }
+        ]
+    },
+]
+
+menu_items.each { |menu_item| 
+
+    created_item = MenuItem.create(
+        menu_id: menu_item[:menu_id],
+        name: menu_item[:name]
+    )
+
+    menu_item[:ingredients].each{ |ingredient| 
+
+        matching_product = Product.find_by(name: ingredient[:name])
+        Ingredient.create(
+            product_id: matching_product.id,
+            menu_item_id: created_item.id,
+            quantity: ingredient[:quantity]
+        )
+    }
+}
 
