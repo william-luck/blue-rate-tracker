@@ -520,40 +520,6 @@ menu_items = [
         ]
     },
     {
-        name: "Baked Lemon Chicken",
-        menu_id: cocktail_menu.id,
-        ingredients: [
-            {
-                name: 'butter',
-                quantity: 0.113,
-            },
-            {
-                name: 'chicken breast',
-                quantity: 0.400,
-            },
-            {
-                name: 'flour',
-                quantity: 0.070,
-            },
-            {
-                name: 'lemon juice',
-                quantity: 0.078,
-            },
-            {
-                name: 'onion',
-                quantity: 0.010,
-            },
-            {
-                name: 'garlic',
-                quantity: 0.007,
-            },
-            {
-                name: 'salt',
-                quantity: 0.005,
-            }
-        ]
-    },
-    {
         name: "Whiskey Sour",
         menu_id: cocktail_menu.id,
         ingredients: [
