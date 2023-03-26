@@ -1,10 +1,18 @@
 import MenusContainer from './MenusContainer';
+import { Route, Switch } from 'react-router-dom';
 
 function App() {
 
   return (
     <>  
-    <MenusContainer/>
+    <Switch>
+      <Route exact path='/'>
+        <MenusContainer/>
+      </Route>
+      <Route path='/test'>
+        Test
+      </Route>
+    </Switch>
     </>
   );
 }
