@@ -1,17 +1,24 @@
+import { Route, Switch} from 'react-router-dom';
+
 import MenusContainer from './MenusContainer';
-import { Route, Switch } from 'react-router-dom';
+import NavBar from './NavBar';
+
 
 function App() {
 
   return (
     <>  
+    <NavBar />
     <Switch>
-      <Route exact path='/'>
-        <MenusContainer/>
-      </Route>
+      
       <Route path='/test'>
         Test
       </Route>
+
+      <Route path='/'>
+        <MenusContainer/>
+      </Route>
+
     </Switch>
     </>
   );
