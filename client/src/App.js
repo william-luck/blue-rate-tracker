@@ -1,20 +1,22 @@
 import logo from './logo.svg';
 import './App.css';
 import {useEffect, useState} from 'react'
-
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMenus } from './menusSlice';
 
 
 function App() {
 
   const [menus, setMenus] = useState([])
 
-  useEffect(() => {
-    fetch('/menus')
-      .then(r => r.json())
-      .then(menus => setMenus(menus))
-  }, [])
+  const dispatch = useDispatch()
+  // const data = useSelector(state => state.menus.entities)
 
-  
+  useEffect(() => {
+    dispatch(fetchMenus())
+  }, [dispatch])
+
+
 
   function calculatePrice(menu_item) {
     let sub_total = menu_item.ingredients.reduce((accum, curr) => accum + curr.price_of_ingredient, 0)
