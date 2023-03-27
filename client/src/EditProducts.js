@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./productsSlice";
+import Product from "./Product";
 
 
 function EditProducts() {
@@ -18,7 +19,7 @@ function EditProducts() {
         <>
         Products
         <ul>
-            {products?.map(product => <li key={product.id}>Name: {product.name}, Price per unit: {product.price}</li>)}
+            {products?.map(product => <Product key={product.id} product={product}/>)}
         </ul>
         </>
     )
