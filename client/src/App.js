@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import MenusContainer from './MenusContainer';
 import NavBar from './NavBar';
 import Login from './Login';
+import EditProducts from './EditProducts';
 
 import { checkLogin, removeSession } from './usersSlice';
 
@@ -34,6 +35,10 @@ function App() {
       
       <Route path='/test'>
         Test
+      </Route>
+
+      <Route path='/edit-products'>
+        <EditProducts />
       </Route>
 
       <Route path='/'>

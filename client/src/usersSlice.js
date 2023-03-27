@@ -37,7 +37,7 @@ const sessionsSlice = createSlice({
     extraReducers: {
         [addSession.fulfilled] (state, action) {
             if (!action.payload.id) {
-                state.errors.push(action.payload.errors)
+                state.errors = action.payload.errors
             } else {
                 state.entities.push(action.payload)
                 state.errors = []

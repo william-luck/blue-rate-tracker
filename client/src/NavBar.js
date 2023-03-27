@@ -12,7 +12,7 @@ function NavBar() {
                 Test
             </NavLink>
             {' '}
-            <NavLink to='/test' >
+            <NavLink to='/edit-products' >
                 Edit Products
             </NavLink>
             {' '}
