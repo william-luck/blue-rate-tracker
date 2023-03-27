@@ -1,13 +1,21 @@
 import { Route, Switch} from 'react-router-dom';
+import { useState } from 'react';
+
 
 import MenusContainer from './MenusContainer';
 import NavBar from './NavBar';
+import Login from './Login';
 
 
 function App() {
 
+  const [user, setUser] = useState('')
+
+  if (!user) return <Login setUser={setUser} />
+  
   return (
     <>  
+    {/* <Login setUser={setUser} /> */}
     <NavBar />
     <Switch>
       
