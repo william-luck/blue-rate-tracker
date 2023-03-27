@@ -23,6 +23,8 @@ function NavBar() {
             <NavLink to='/test' >
                 Edit Menus
             </NavLink>
+
+
         </div>
         </>
     )

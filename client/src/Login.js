@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { addUser } from "./usersSlice";
-import { useDispatch } from "react-redux";
+import { addSession } from "./usersSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
-function Login({ setUser }) {
+function Login() {
 
     const [formData, setFormData] = useState({
         email: '',
@@ -11,6 +11,7 @@ function Login({ setUser }) {
     })
 
     const dispatch = useDispatch()
+    const errors = useSelector(state => state.users.errors)
 
     function handleChange(e) {
         setFormData({
@@ -20,11 +21,7 @@ function Login({ setUser }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        dispatch(addUser(formData))
-        
-
-        setUser(formData)
-
+        dispatch(addSession(formData))
         setFormData({
             email: '',
             password: ''
@@ -42,6 +39,10 @@ function Login({ setUser }) {
             <input type='password' value={formData.password} name='password' onChange={handleChange}></input>
             <button onClick={handleSubmit}>Login</button>
         </form>
+
+        {errors?.map(error => <li>{error}</li>)}
+
+
         </>
     )
 }
