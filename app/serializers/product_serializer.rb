@@ -1,5 +1,5 @@
 class ProductSerializer < ActiveModel::Serializer
-  attributes :name, :price
+  attributes :id, :name, :price
 
   # has_many :ingredients
 
