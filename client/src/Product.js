@@ -10,16 +10,24 @@ function Product({ product }) {
         price: product.price,
         id: product.id
     })
+
     const [editing, setEditing] = useState(false)
+    const [nameEditing, setNameEditing] = useState(false)
 
     const dispatch = useDispatch()
 
     function handlePriceEditClick() {
         if (editing) {
-            // Post request
             dispatch(editProduct(formData))
         }
         setEditing(prevValue => !prevValue)
+    }
+
+    function handleNameEditClick() {
+        if (nameEditing) {
+            dispatch(editProduct(formData))
+        }
+        setNameEditing(prevValue => !prevValue)
     }
 
     function handleChange(e) {
@@ -31,10 +39,14 @@ function Product({ product }) {
 
     return (
         <>
-        {product.name}:
-        {' '}<li><span>Price per unit: {!editing ? product.price : <input value={formData.price} onChange={handleChange} name="price"></input>}</span>
+        Name: {!nameEditing ? product.name : <input value={formData.name} onChange={handleChange} name='name'></input>} 
+        <button onClick={handleNameEditClick}>{!nameEditing ? 'Edit' : 'Save'} </button>
+        {' '}
+
+        <li><span>Price per unit: {!editing ? product.price : <input value={formData.price} onChange={handleChange} name="price"></input>}</span>
         <button onClick={handlePriceEditClick}>{!editing ? 'Edit' : 'Save'}</button></li>
-        {product.error}
+
+        {product.error ? 'Error: ' + product.error : null}
         <br></br>
         </>
     )
