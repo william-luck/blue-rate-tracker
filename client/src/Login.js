@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { addUser } from "./usersSlice";
+import { useDispatch } from "react-redux";
 
 
 function Login({ setUser }) {
@@ -8,6 +10,8 @@ function Login({ setUser }) {
         password: ''
     })
 
+    const dispatch = useDispatch()
+
     function handleChange(e) {
         setFormData({
             ...formData, [e.target.name]: e.target.value
@@ -16,7 +20,8 @@ function Login({ setUser }) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // Fetch login route with POST, redux? 
+        dispatch(addUser(formData))
+        
 
         setUser(formData)
 

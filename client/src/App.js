@@ -15,7 +15,6 @@ function App() {
   
   return (
     <>  
-    {/* <Login setUser={setUser} /> */}
     <NavBar />
     <Switch>
       
