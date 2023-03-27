@@ -34,6 +34,7 @@ function Product({ product }) {
         {product.name}:
         {' '}<li><span>Price per unit: {!editing ? product.price : <input value={formData.price} onChange={handleChange} name="price"></input>}</span>
         <button onClick={handlePriceEditClick}>{!editing ? 'Edit' : 'Save'}</button></li>
+        {product.error}
         <br></br>
         </>
     )

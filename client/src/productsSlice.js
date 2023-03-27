@@ -33,9 +33,15 @@ const productsSlice = createSlice({
             state.entities = action.payload
         },
         [editProduct.fulfilled] (state, action) {
-            const product = state.entities.find(product => product.id === action.payload.id)
-            product.name = action.payload.name
-            product.price = action.payload.price
+            // Using .meta.arg.in case the action.payload sends back error
+            const product = state.entities.find(product => product.id === action.meta.arg.id)
+            if (!action.payload.id) {
+                product.error = action.payload.errors
+            } else {
+                product.name = action.payload.name
+                product.price = action.payload.price
+                product.error = null
+            }
         }
     }
 })
