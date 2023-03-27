@@ -15,7 +15,13 @@ export const addSession = createAsyncThunk('sessions/addSession', async (formDat
 })
 
 export const removeSession = createAsyncThunk('sessions/removeSession', async () => {
-    fetch('/logout', {method: 'DELETE'})
+    return fetch('/logout', {method: 'DELETE'})
+})
+
+export const checkLogin = createAsyncThunk('users/fetchUser', async() => {
+    const response = await fetch('/me')
+    
+    return response.json()
 })
 
 const sessionsSlice = createSlice({
@@ -39,6 +45,11 @@ const sessionsSlice = createSlice({
         },
         [removeSession.fulfilled] (state) {
             state.entities = []
+        },
+        [checkLogin.fulfilled] (state, action) {
+            if (action.payload.id) {
+                state.entities.push(action.payload)
+            }
         }
     }
 })
