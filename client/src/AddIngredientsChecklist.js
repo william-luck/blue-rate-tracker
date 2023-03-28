@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+
 import { ingredientAdded, ingredientRemoved } from "./ingredientsSlice";
 
 
@@ -11,17 +11,12 @@ function AddIngredientsChecklist() {
     const selectedIngredients = useSelector(state => state.ingredientsSelected.entities)
 
     function handleClick(e) {
-        // If it doesn't exist, add 
-
         const match = selectedIngredients.find(ingredient => ingredient.name === e.target.name)
-        // debugger
         if (!match) {
             dispatch(ingredientAdded({name: e.target.name, product_id: e.target.id}))
         } else {
             dispatch(ingredientRemoved(e.target.id))
         }
-        // If it does, remove
-
     }
 
     return (
