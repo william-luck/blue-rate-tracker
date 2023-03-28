@@ -16,8 +16,8 @@ function NavBar() {
                 Edit Products
             </NavLink>
             {' '}
-            <NavLink to='/test' >
-                Edit Ingredients
+            <NavLink to='/add-menu-item' >
+                Add Menu Item
             </NavLink>
             {' '}
             <NavLink to='/test' >

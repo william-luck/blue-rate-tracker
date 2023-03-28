@@ -7,6 +7,7 @@ import MenusContainer from './MenusContainer';
 import NavBar from './NavBar';
 import Login from './Login';
 import EditProducts from './EditProducts';
+import AddMenuItem from './AddMenuItem';
 
 import { checkLogin, removeSession } from './usersSlice';
 
@@ -39,6 +40,10 @@ function App() {
 
       <Route path='/edit-products'>
         <EditProducts />
+      </Route>
+
+      <Route path='/add-menu-item'>
+        <AddMenuItem />
       </Route>
 
       <Route path='/'>
