@@ -3,6 +3,7 @@ import menusReducer from './menusSlice'
 import usersReducer from './usersSlice'
 import productsReducer from './productsSlice'
 import ingredientsReducer from './ingredientsSlice'
+import menuItemsReducer from './menuItemsSlice'
 
 
 
@@ -12,6 +13,7 @@ const store = configureStore({
     users: usersReducer,
     products: productsReducer,
     ingredientsSelected: ingredientsReducer,
+    newMenuItems: menuItemsReducer
   },
 })
 

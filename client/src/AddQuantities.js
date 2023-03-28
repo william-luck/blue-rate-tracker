@@ -9,6 +9,7 @@ function AddQuantities() {
     return (
         <>
             {ingredients?.map(ingredient => <AddQuantityToIngredient ingredient={ingredient}/>)}
+
         </>
     )
 }
