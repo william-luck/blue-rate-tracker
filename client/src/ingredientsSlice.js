@@ -20,6 +20,11 @@ const ingredientsSlice = createSlice({
         }, 
         assignName(state, action) {
             state.name = action.payload
+        },
+        assignQuantity(state, action) {
+            const ingredient = state.entities.find(ingredient => ingredient.product_id === action.payload.id)
+            ingredient.quantity = action.payload.quantity
+
         }
     }, 
     extraReducers: {
@@ -27,6 +32,6 @@ const ingredientsSlice = createSlice({
     }
 })
 
-export const {ingredientAdded, ingredientRemoved, assignMenu, assignName } = ingredientsSlice.actions;
+export const {ingredientAdded, ingredientRemoved, assignMenu, assignName, assignQuantity } = ingredientsSlice.actions;
 
 export default ingredientsSlice.reducer
