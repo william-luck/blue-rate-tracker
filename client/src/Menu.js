@@ -14,7 +14,7 @@ function Menu( { menu }) {
         <div>
             {menu.name}
             <ul>
-                {menu.menu_items.map(item => <li>{item.name}: {calculatePrice(item)}</li>)}
+                {menu.menu_items.map(item => <li key={item.name}>{item.name}: {calculatePrice(item)}</li>)}
             </ul>
         </div>
         </>

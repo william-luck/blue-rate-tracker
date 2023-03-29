@@ -16,7 +16,7 @@ function MenusContainer() {
 
     return (
         <>
-        {menus?.map(menu => <Menu menu={menu}/>)}
+        {menus?.map(menu => <Menu menu={menu} key={menu.name}/>)}
         </>
     )
 }
