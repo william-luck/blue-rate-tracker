@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ingredientEdited } from "./ingredientsSlice";
 
 export const fetchMenus = createAsyncThunk('menus/fetchMenus', () => {
     // Promise returned
@@ -27,6 +28,16 @@ const menusSlice = createSlice({
         [fetchMenus.fulfilled](state, action) {
             state.entities = action.payload
             state.status = 'idle'
+        },
+        [ingredientEdited.fulfilled] (state, action) {
+            // Loop over entities, find matching menu item 
+            // state.entities.find(menu => {
+            //     menu.menu_items.find(menu_item => {
+            //         menu_item.ingredients.find(ingredient => {
+            //             return ingredient.id === action.payload.id
+            //         })
+            //     })
+            // })
         }
     }
 })

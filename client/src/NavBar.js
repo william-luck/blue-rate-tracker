@@ -20,6 +20,10 @@ function NavBar() {
                 Add Menu Item
             </NavLink>
             {' '}
+            <NavLink to='/edit-menu-items' >
+                Edit Menu Items
+            </NavLink>
+            {' '}
             <NavLink to='/test' >
                 Edit Menus
             </NavLink>

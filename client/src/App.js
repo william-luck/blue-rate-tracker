@@ -12,6 +12,7 @@ import AddMenuItem from './AddMenuItem';
 import { checkLogin, removeSession } from './usersSlice';
 import { useState } from 'react';
 import BlueRateValue from './BlueRateValue';
+import EditMenuItems from './EditMenuItems';
 
 
 function App() {
@@ -54,9 +55,15 @@ function App() {
         <AddMenuItem />
       </Route>
 
+      <Route path='/edit-menu-items'>
+        <EditMenuItems />
+      </Route>
+
       <Route path='/'>
         <MenusContainer/>
       </Route>
+
+      
 
     </Switch>
     </>
