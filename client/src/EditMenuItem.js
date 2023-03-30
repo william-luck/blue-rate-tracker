@@ -12,7 +12,7 @@ function EditMenuItem({ item }) {
         <>
         <h1>{item.name}</h1>
         
-            {item.ingredients?.map(ingredient => <EditIngredient ingredient={ingredient}/>)}
+            {item.ingredients?.map(ingredient => <EditIngredient ingredient={ingredient} key={ingredient.id}/>)}
 
         </>
     )
