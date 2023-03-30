@@ -19,7 +19,14 @@ function EditMenuItems() {
     function handleChange(e) {
         const item = menuItems.find(menuItem => menuItem.id == e.target.value)
         dispatch(ingredientSelected(item))
-    
+    }
+
+    function selected(id) {
+        if (id == selectedItem.id) {
+            return true
+        } else {
+            return false
+        }
     }
 
     return (
@@ -28,7 +35,7 @@ function EditMenuItems() {
         <select id='menuItem' name='menuItem' onChange={handleChange}>
             <option value=''>None</option>
             {menuItems?.map(menuItem => {
-            return <option key={menuItem.id} value={menuItem.id}>{menuItem.name}</option>
+            return <option key={menuItem.id} value={menuItem.id} selected={selected(menuItem.id)}>{menuItem.name}</option>
             })}
         </select>
 
