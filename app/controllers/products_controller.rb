@@ -7,6 +7,11 @@ class ProductsController < ApplicationController
         render json: products
     end
 
+    def create
+        product = Product.create!(product_params)
+        render json: product, status: :accepted
+    end
+
     def update
         product = Product.find(params[:id])
         if session[:user_id]
@@ -16,6 +21,8 @@ class ProductsController < ApplicationController
             render json: ['You must be logged into to edit products']
         end
     end
+
+
 
     private
 

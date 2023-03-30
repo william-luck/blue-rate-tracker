@@ -16,7 +16,19 @@ export const editProduct = createAsyncThunk('products/editProduct', async(produc
         body: JSON.stringify(product)
     })
         .then(response => response.json())
-        .then(data => data)
+        // .then(data => data)
+})
+
+export const addProduct = createAsyncThunk('products/addProduct', async(product) => {
+    return fetch(`/products`, {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(product)
+    })
+        .then(response => response.json())
+        // .then(data => data)
 })
 
 const productsSlice = createSlice({
@@ -42,6 +54,9 @@ const productsSlice = createSlice({
                 product.price = action.payload.price
                 product.error = null
             }
+        },
+        [addProduct.fulfilled] (state, action) {
+            state.entities.push(action.payload)
         }
     }
 })
