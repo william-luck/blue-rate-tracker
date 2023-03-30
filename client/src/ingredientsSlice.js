@@ -40,10 +40,7 @@ const ingredientsSlice = createSlice({
         }
     }, 
     extraReducers: {
-        // [ingredientEdited.fulfilled] (state, action) {
-        //     debugger
-        //     state.
-        // }
+        // 
     }
 })
 

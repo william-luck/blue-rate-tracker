@@ -1,5 +1,10 @@
 class MenuItemsController < ApplicationController
 
+    def index
+        menu_items = MenuItem.all.order('name ASC')
+        render json: menu_items, status: :ok
+    end
+
     def create
 
         created_menu_item = MenuItem.new(menu_item_params)

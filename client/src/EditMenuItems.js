@@ -1,20 +1,25 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import EditMenuItem from "./EditMenuItem";
+import { fetchMenuItems, ingredientSelected } from "./menuItemsSlice";
 
 
 function EditMenuItems() {
 
-    const [selectedItem, setSelectedItem] = useState('')
 
-    let menuItems = useSelector(state => {
-        return state.menus.entities.map(menu => menu.menu_items).flat(2)
-        
-    })
+
+    const dispatch = useDispatch()
+    const menuItems = useSelector(state => state.menuItems.entities)
+    const selectedItem = useSelector(state => state.menuItems.selectedItem)
+
+    useEffect(() => {
+        dispatch(fetchMenuItems())
+    }, [])
 
     function handleChange(e) {
         const item = menuItems.find(menuItem => menuItem.id == e.target.value)
-        setSelectedItem(item)
+        dispatch(ingredientSelected(item))
+    
     }
 
     return (

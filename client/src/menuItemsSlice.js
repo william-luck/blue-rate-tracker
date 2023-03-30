@@ -1,4 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import { ingredientEdited } from "./ingredientsSlice"
+
+export const fetchMenuItems = createAsyncThunk('menuItems/fetchMenuItems', async () => {
+    return fetch('/menu_items')
+        .then(r => r.json())
+})
 
 export const addMenuItem = createAsyncThunk('menuItems/AddMenuItem', async (data) => {
     const response = await fetch('/menu_items', { 
@@ -13,29 +19,37 @@ export const addMenuItem = createAsyncThunk('menuItems/AddMenuItem', async (data
 })
 
 const menuItemsSlice = createSlice({
-    name: 'new_menu_items',
+    name: 'menu_items',
     initialState: {
-        entities: []
+        entities: [],
+        selectedItem: []
     },
     reducers: {
-        // Blank for now
-        // Add, logout? Async?
+        ingredientSelected(state, action) {
+            state.selectedItem = action.payload
+        }
     }, 
     extraReducers: {
-        // [addSession.fulfilled] (state, action) {
-        //     if (!action.payload.id) {
-        //         state.errors = action.payload.errors
-        //     } else {
-        //         state.entities.push(action.payload)
-        //         state.errors = []
-        //     }
-        // },
         [addMenuItem.fulfilled] (state, action) {
-            state.entities = []
             state.entities.push(action.payload)
+        },
+        [fetchMenuItems.fulfilled] (state, action) {
+            state.entities = action.payload
+        }, 
+        [ingredientEdited.fulfilled] (state, action) {
+            // Edits ingredient in menuItem state
+            // const menuItem = state.entities.find(item => item.id == action.payload.menu_item_id)
+            // const ingredient2 = menuItem.ingredients.find(ingred => ingred.id === action.payload.id)
+            // ingredient2.quantity = action.payload.quantity
+
+            // Edits ingredient in selectedItem (to display on page)
+            const ingredient = state.selectedItem.ingredients.find(ingred => ingred.id === action.payload.id)
+            ingredient.quantity = action.payload.quantity
         }
     
     }
 })
+
+export const { ingredientSelected } = menuItemsSlice.actions
 
 export default menuItemsSlice.reducer
