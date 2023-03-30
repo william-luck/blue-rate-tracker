@@ -27,7 +27,7 @@ const menuItemsSlice = createSlice({
     reducers: {
         ingredientSelected(state, action) {
             state.selectedItem = action.payload
-        }
+        }, 
     }, 
     extraReducers: {
         [addMenuItem.fulfilled] (state, action) {
