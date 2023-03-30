@@ -6,6 +6,7 @@ import AddQuantities from "./AddQuantities";
 
 import { assignName } from "./ingredientsSlice";
 import { addMenuItem } from "./menuItemsSlice";
+import AddProduct from "./AddProduct";
 
 
 function AddMenuItem() {
@@ -31,7 +32,8 @@ function AddMenuItem() {
     return( 
         <>
         {!submitted ? 
-        
+
+        <div>
          <form onSubmit={handleInitialSubmit}> 
             <label>Enter name for new menu item:</label>
             <input value={name} onChange={e => dispatch(assignName(e.target.value))}/>
@@ -42,6 +44,12 @@ function AddMenuItem() {
             <br></br>
             <button type="submit">Finished, proceed to enter quantities</button>
         </form>
+
+
+        <h2>Add new ingredient?</h2>
+        <AddProduct />
+
+        </div>
 
         :
         <div>
