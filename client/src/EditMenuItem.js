@@ -3,7 +3,7 @@ import EditIngredient from "./EditIngredient";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { reassignMenu } from "./menuItemsSlice";
+import { editItem } from "./menuItemsSlice";
 
 
 
@@ -42,10 +42,20 @@ function EditMenuItem({ item }) {
         setSelectedMenu(e.target.value)
     }
 
+    function handleNameCancel() {
+        setNameEditing(false)
+        setMenuItemName(item.name)
+    }
+
+    function handleMenuCancel() {
+        setMenuEditing(false)
+        setSelectedMenu(item.menu.name)
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
         const menuId = menus.find(menu => menu.name === selectedMenu).id
-        dispatch(reassignMenu({
+        dispatch(editItem({
             item_id: item.id,
             name: menuItemName,
             menu_id: menuId
@@ -65,12 +75,12 @@ function EditMenuItem({ item }) {
         <br></br>
         <br></br>
         Name: {!nameEditing ? <label> {menuItemName} </label> : <input onChange={handleNameChange} value={menuItemName}/>}
-        {!nameEditing ? <button onClick={handleNameEditClick}>Edit</button> : <button onClick={handleSubmit}>Save</button>}
+        {!nameEditing ? <button onClick={handleNameEditClick}>Edit</button>: <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Save</button><button onClick={handleNameCancel}>Cancel</button></div>}
         <br></br>
         <br></br>
 
-                <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
-                {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <button onClick={handleSubmit}>Reassign</button>}
+            <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
+            {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Reassign</button><button onClick={handleMenuCancel}>Cancel</button></div>}
             <br></br>
             <br></br>
         

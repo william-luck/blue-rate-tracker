@@ -18,7 +18,7 @@ export const addMenuItem = createAsyncThunk('menuItems/AddMenuItem', async (data
     return response.json()
 })
 
-export const reassignMenu = createAsyncThunk('menuItems/reassignMenu', async (menuItem) => {
+export const editItem = createAsyncThunk('menuItems/editItem', async (menuItem) => {
     const response = await fetch(`menu_items/${menuItem.item_id}`, {
         method: 'PATCH',
         headers: {
@@ -51,18 +51,22 @@ const menuItemsSlice = createSlice({
             state.entities = action.payload
         }, 
         [ingredientEdited.fulfilled] (state, action) {
-            // Edits ingredient in menuItem state
-            // const menuItem = state.entities.find(item => item.id == action.payload.menu_item_id)
-            // const ingredient2 = menuItem.ingredients.find(ingred => ingred.id === action.payload.id)
-            // ingredient2.quantity = action.payload.quantity
+            // state.entities edit (for persisting change when different menu item is selected)
+            const menuItem = state.entities.find(item => item.id === action.payload.menu_item_id)
+            const menuItemIngredient = menuItem.ingredients.find(ingred => ingred.id === action.payload.id)
+            menuItemIngredient.quantity = action.payload.quantity
 
-            // Edits ingredient in selectedItem (to display on page)
+            // state.selectedItem edit (for displaying immediatley on page)
             const ingredient = state.selectedItem.ingredients.find(ingred => ingred.id === action.payload.id)
             ingredient.quantity = action.payload.quantity
         },
-        [reassignMenu.fulfilled] (state, action) {
+        [editItem.fulfilled] (state, action) {
+            // For immediately displaying on page
             state.selectedItem.menu = action.payload.menu
             state.selectedItem.name = action.payload.name
+
+            // For updating title in dropdown menu and persisting changes across menu item selection
+            state.entities.find(item => item.id === action.payload.id).name = action.payload.name
         }
     
     }

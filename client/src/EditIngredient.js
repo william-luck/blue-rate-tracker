@@ -26,8 +26,8 @@ function EditIngredient({ ingredient }) {
         <form onSubmit={e => handleSubmit(e)} >
         <div>
             <label>{ingredient.product_name}: </label>
-            {!editing ? <label>{ingredient.quantity * 1000}</label> : <input/>} grams / mililiters {' '}
-            {!editing ? <button onClick={e => handleClick(e)}>Edit</button> : <button type="submit" id="submit">Save</button> }
+            {!editing ? <label>{ingredient.quantity * 1000}</label> : <input placeholder={ingredient.quantity*1000}/>} grams / mililiters {' '}
+            {!editing ? <button onClick={e => handleClick(e)}>Edit</button> : <div style={{display:'inline-block'}}><button type="submit" id="submit">Save</button><button onClick={() => setEditing(false)}>Cancel</button></div> }
         </div>
         <br></br>
         </form>
