@@ -18,6 +18,18 @@ export const addMenuItem = createAsyncThunk('menuItems/AddMenuItem', async (data
     return response.json()
 })
 
+export const reassignMenu = createAsyncThunk('menuItems/reassignMenu', async (menuItem) => {
+    const response = await fetch(`menu_items/${menuItem.item_id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(menuItem)
+    })
+    
+    return response.json()
+})
+
 const menuItemsSlice = createSlice({
     name: 'menu_items',
     initialState: {
@@ -45,6 +57,9 @@ const menuItemsSlice = createSlice({
             // Edits ingredient in selectedItem (to display on page)
             const ingredient = state.selectedItem.ingredients.find(ingred => ingred.id === action.payload.id)
             ingredient.quantity = action.payload.quantity
+        },
+        [reassignMenu.fulfilled] (state, action) {
+            state.selectedItem.menu = action.payload.menu
         }
     
     }

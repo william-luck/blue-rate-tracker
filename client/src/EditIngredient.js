@@ -23,11 +23,11 @@ function EditIngredient({ ingredient }) {
 
     return (
         <>
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={e => handleSubmit(e)} >
         <div>
             <label>{ingredient.product_name}: </label>
             {!editing ? <label>{ingredient.quantity * 1000}</label> : <input/>} grams / mililiters {' '}
-            {!editing ? <button onClick={handleClick}>Edit</button> : <button type="submit">Save</button> }
+            {!editing ? <button onClick={e => handleClick(e)}>Edit</button> : <button type="submit" id="submit">Save</button> }
         </div>
         <br></br>
         </form>

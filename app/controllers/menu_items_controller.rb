@@ -23,11 +23,18 @@ class MenuItemsController < ApplicationController
 
     end
 
+    def update
+        menu_item = MenuItem.find(params[:id])
+        menu_item.update!(menu_item_params)
+
+        render json: menu_item, status: :accepted
+    end
+
 
     private 
 
     def menu_item_params
-        params.permit(:name)
+        params.permit(:name, :menu_id)
     end
 
     def ingredient_params(ingredient)
