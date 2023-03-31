@@ -24,7 +24,7 @@ function NavBar() {
                 Edit Menu Items
             </NavLink>
             {' '}
-            <NavLink to='/test' >
+            <NavLink to='/edit-menus' >
                 Edit Menus
             </NavLink>
 

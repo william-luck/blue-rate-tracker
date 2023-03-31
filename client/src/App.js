@@ -13,6 +13,7 @@ import { checkLogin, removeSession } from './usersSlice';
 import { useState } from 'react';
 import BlueRateValue from './BlueRateValue';
 import EditMenuItems from './EditMenuItems';
+import EditMenus from './EditMenus';
 
 
 function App() {
@@ -43,8 +44,8 @@ function App() {
     { blue ? <BlueRateValue blue={blue}/> : null }
     <Switch>
       
-      <Route path='/test'>
-        Test
+      <Route path='/edit-menus'>
+        <EditMenus/>
       </Route>
 
       <Route path='/edit-products'>

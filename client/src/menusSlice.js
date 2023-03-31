@@ -6,7 +6,18 @@ export const fetchMenus = createAsyncThunk('menus/fetchMenus', () => {
     return fetch('/menus')
         .then(response => response.json())
         .then(data => data)
-})      
+})  
+
+export const editMenuName = createAsyncThunk('menus/editMenuName', async (data) => {
+    return fetch(`menus/${data.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+})
 
 const menusSlice = createSlice({
     name: 'menus',
@@ -29,15 +40,10 @@ const menusSlice = createSlice({
             state.entities = action.payload
             state.status = 'idle'
         },
-        [ingredientEdited.fulfilled] (state, action) {
-            // Loop over entities, find matching menu item 
-            // state.entities.find(menu => {
-            //     menu.menu_items.find(menu_item => {
-            //         menu_item.ingredients.find(ingredient => {
-            //             return ingredient.id === action.payload.id
-            //         })
-            //     })
-            // })
+        [editMenuName.fulfilled](state, action) {
+            
+            const menu = state.entities.find(menu => menu.id === action.payload.id)
+            menu.name = action.payload.name
         }
     }
 })

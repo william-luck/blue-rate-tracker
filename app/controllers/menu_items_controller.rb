@@ -30,6 +30,9 @@ class MenuItemsController < ApplicationController
         render json: menu_item, status: :accepted
     end
 
+    def destroy
+    end
+
 
     private 
 
