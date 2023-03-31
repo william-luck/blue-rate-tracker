@@ -19,6 +19,17 @@ export const editMenuName = createAsyncThunk('menus/editMenuName', async (data) 
         .then(response => response.json())
 })
 
+export const addMenu = createAsyncThunk('menus/addMenu', async (name) => {
+    return fetch('menus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(name)
+    })
+        .then(response => response.json())
+})
+
 const menusSlice = createSlice({
     name: 'menus',
     initialState: {
@@ -41,9 +52,11 @@ const menusSlice = createSlice({
             state.status = 'idle'
         },
         [editMenuName.fulfilled](state, action) {
-            
             const menu = state.entities.find(menu => menu.id === action.payload.id)
             menu.name = action.payload.name
+        },
+        [addMenu.fulfilled] (state, action) {
+            state.entities.push(action.payload)
         }
     }
 })

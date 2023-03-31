@@ -1,8 +1,15 @@
 class MenusController < ApplicationController
 
     def index
-        menus = Menu.all
+        menus = Menu.all.order('name ASC')
         render json: menus, include: ['menu_items', 'menu_items.ingredients', methods: :find_price_per_quantity]
+    end
+
+    def create
+
+        menu = Menu.create!(menu_params)
+
+        render json: menu, status: :created
     end
 
     def update
@@ -15,7 +22,7 @@ class MenusController < ApplicationController
     private
     
     def menu_params
-        params.permit(:name)
+        params.permit(:name, :user_id)
     end
     
 end

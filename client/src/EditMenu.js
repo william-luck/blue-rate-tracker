@@ -27,7 +27,6 @@ function EditMenu({ name, id }) {
         e.preventDefault()
         dispatch(editMenuName({id: id, name: menuName}))
         setMenuEditing(false)
-        
     }
 
     return(
