@@ -30,6 +30,8 @@ export const reassignMenu = createAsyncThunk('menuItems/reassignMenu', async (me
     return response.json()
 })
 
+// export const editName = createAsyncThunk('menuItems/editName', as)
+
 const menuItemsSlice = createSlice({
     name: 'menu_items',
     initialState: {
@@ -60,6 +62,7 @@ const menuItemsSlice = createSlice({
         },
         [reassignMenu.fulfilled] (state, action) {
             state.selectedItem.menu = action.payload.menu
+            state.selectedItem.name = action.payload.name
         }
     
     }

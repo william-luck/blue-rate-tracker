@@ -9,6 +9,8 @@ import { reassignMenu } from "./menuItemsSlice";
 
 function EditMenuItem({ item }) {
 
+    const [menuItemName, setMenuItemName] = useState(item.name)
+    const [nameEditing, setNameEditing] = useState(false)
     const [menuEditing, setMenuEditing] = useState(false)
     const [selectedMenu, setSelectedMenu] = useState(item.menu.name)
 
@@ -19,25 +21,35 @@ function EditMenuItem({ item }) {
     // Resets editing state if different menu item  is selected from parent dropdown
     useEffect(() => {
         setMenuEditing(false)
+        setNameEditing(false)
         setSelectedMenu(item.menu.name)
+        setMenuItemName(item.name)
     },[item])
+
+    function handleEditClick() {
+        setMenuEditing(true)
+    }
+
+    function handleNameEditClick() {
+        setNameEditing(true)
+    }
+
+    function handleNameChange(e) {
+        setMenuItemName(e.target.value)
+    }
+
+    function handleEditMenu(e) {
+        setSelectedMenu(e.target.value)
+    }
 
     function handleSubmit(e) {
         e.preventDefault()
         const menuId = menus.find(menu => menu.name === selectedMenu).id
         dispatch(reassignMenu({
             item_id: item.id,
+            name: menuItemName,
             menu_id: menuId
-        }))
-        
-    }
-
-    function handleEditClick() {
-        setMenuEditing(true)
-    }
-
-    function handleEditMenu(e) {
-        setSelectedMenu(e.target.value)
+        }))  
     }
 
     function menuDropDown() {
@@ -50,10 +62,16 @@ function EditMenuItem({ item }) {
 
     return(
         <>
-        <h1>{item.name}</h1>
+        <br></br>
+        <br></br>
+        Name: {!nameEditing ? <label> {menuItemName} </label> : <input onChange={handleNameChange} value={menuItemName}/>}
+        {!nameEditing ? <button onClick={handleNameEditClick}>Edit</button> : <button onClick={handleSubmit}>Save</button>}
+        <br></br>
+        <br></br>
 
                 <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
                 {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <button onClick={handleSubmit}>Reassign</button>}
+            <br></br>
             <br></br>
         
             {item.ingredients?.map(ingredient => <EditIngredient ingredient={ingredient} key={ingredient.id}/>)}
