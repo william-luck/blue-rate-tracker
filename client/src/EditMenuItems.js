@@ -22,11 +22,14 @@ function EditMenuItems() {
     }
 
     function selected(id) {
-        if (id == selectedItem.id) {
-            return true
-        } else {
-            return false
+        if (selectedItem) {
+            if (id == selectedItem.id) {
+                return true
+            } else {
+                return false
+            }
         }
+        
     }
 
     return (
@@ -39,7 +42,7 @@ function EditMenuItems() {
             })}
         </select>
 
-        {selectedItem ? <EditMenuItem item={selectedItem}/> : null}
+        {!Array.isArray(selectedItem) && selectedItem ? <EditMenuItem item={selectedItem}/> : null}
         </>
     )
 }
