@@ -149,8 +149,7 @@ price_data = [
 price_data.each { |product| 
     Product.create(
         name: product[:name],
-        price: product[:price],
-        price_ratio: 3.0
+        price: product[:price]
     )    
 }
 
@@ -159,16 +158,6 @@ starters_menu = Menu.create(user_id: user.id, name: 'Starters')
 main_menu = Menu.create(user_id: user.id, name: 'Main Dishes')
 cocktail_menu = Menu.create(user_id: user.id, name: 'Cocktails')
 
-
-# Create name of MenuItem
-# roasted_red = MenuItem.create(
-#     name: 'Roasted Red Pepper and Tomato Soup'
-# )
-#     Ingredient.create(
-#         product_id: 9,
-#         menu_item_id: roasted_red.id,
-#         quantity: 250,
-#     )
 
 menu_items = [
     {
@@ -640,7 +629,8 @@ menu_items.each { |menu_item|
 
     created_item = MenuItem.create(
         menu_id: menu_item[:menu_id],
-        name: menu_item[:name]
+        name: menu_item[:name],
+        price_ratio: 3.0
     )
 
     menu_item[:ingredients].each{ |ingredient| 
