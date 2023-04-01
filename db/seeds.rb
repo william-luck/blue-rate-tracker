@@ -149,7 +149,8 @@ price_data = [
 price_data.each { |product| 
     Product.create(
         name: product[:name],
-        price: product[:price]
+        price: product[:price],
+        price_ratio: 3.0
     )    
 }
 
