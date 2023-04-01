@@ -15,6 +15,7 @@ class MenuItemsController < ApplicationController
         pending_ingredients = params[:entities]
         pending_ingredients.each { |ingredient| 
             ingredient[:quantity] = ingredient[:quantity].to_f/1000
+            # if ingredient[:name] === 'egg'
             created_ingredient = Ingredient.new(ingredient_params(ingredient))
             created_ingredient.menu_item_id = created_menu_item.id
             created_ingredient.save!

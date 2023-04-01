@@ -17,7 +17,7 @@ function EditIngredient({ ingredient }) {
     function handleSubmit(e) {
         e.preventDefault()
         
-        dispatch(ingredientEdited({id: ingredient.id, quantity: e.target[0].value}))
+        dispatch(ingredientEdited({id: ingredient.id, quantity: e.target[0].value, name: ingredient.product_name}))
         setEditing(false)
     }
 
