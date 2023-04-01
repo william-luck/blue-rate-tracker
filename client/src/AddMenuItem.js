@@ -52,6 +52,7 @@ function AddMenuItem() {
         </div>
 
         :
+        
         <div>
             <p>You are adding {pendingData.name} to the {pendingData.menu} menu.</p>
             <p>Please enter the quantities of each ingredient to be used in {pendingData.name}</p>

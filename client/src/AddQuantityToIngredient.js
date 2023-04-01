@@ -20,7 +20,8 @@ function AddQuantityToIngredient({ ingredient }) {
     return (
         <span>
             <label>{ingredient.name}: {' '}</label>
-            <input value={ingredient.quantity} onChange={handleChange} />{' '} grams/mililiters
+            <input value={ingredient.quantity} onChange={handleChange} />{' '} 
+            {ingredient.name === 'egg' ? 'eggs' : 'grams / mililiters'}
             <br></br>
             <br></br>
         </span>
