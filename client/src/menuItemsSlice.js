@@ -53,12 +53,14 @@ const menuItemsSlice = createSlice({
         [ingredientEdited.fulfilled] (state, action) {
             // state.entities edit (for persisting change when different menu item is selected)
             const menuItem = state.entities.find(item => item.id === action.payload.menu_item_id)
-            const menuItemIngredient = menuItem.ingredients.find(ingred => ingred.id === action.payload.id)
+            let menuItemIngredient = menuItem.ingredients.find(ingred => ingred.id === action.payload.id)
             menuItemIngredient.quantity = action.payload.quantity
+            menuItemIngredient.price_of_ingredient = action.payload.quantity * action.payload.product.price
 
             // state.selectedItem edit (for displaying immediatley on page)
-            const ingredient = state.selectedItem.ingredients.find(ingred => ingred.id === action.payload.id)
+            let ingredient = state.selectedItem.ingredients.find(ingred => ingred.id === action.payload.id)
             ingredient.quantity = action.payload.quantity
+            ingredient.price_of_ingredient = action.payload.quantity * action.payload.product.price
         },
         [editItem.fulfilled] (state, action) {
             // For immediately displaying on page

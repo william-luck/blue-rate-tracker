@@ -527,7 +527,7 @@ menu_items = [
             },
             {
                 name: 'egg',
-                quantity: 0.08,
+                quantity: 0.083333,
             }
         ]
     },
@@ -549,7 +549,7 @@ menu_items = [
             },
             {
                 name: 'egg',
-                quantity: 0.08,
+                quantity: 0.083333,
             }
         ]
     },
