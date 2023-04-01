@@ -9,6 +9,7 @@ class MenuItemsController < ApplicationController
 
         created_menu_item = MenuItem.new(menu_item_params)
         created_menu_item.menu_id = Menu.find_by(name: params[:menu]).id
+        created_menu_item.price_ratio = 3.0
         created_menu_item.save! 
 
         pending_ingredients = params[:entities]
@@ -37,7 +38,7 @@ class MenuItemsController < ApplicationController
     private 
 
     def menu_item_params
-        params.permit(:name, :menu_id)
+        params.permit(:name, :menu_id, :price_ratio)
     end
 
     def ingredient_params(ingredient)

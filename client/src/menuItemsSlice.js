@@ -64,6 +64,7 @@ const menuItemsSlice = createSlice({
             // For immediately displaying on page
             state.selectedItem.menu = action.payload.menu
             state.selectedItem.name = action.payload.name
+            state.selectedItem.price_ratio = action.payload.price_ratio
 
             // For updating title in dropdown menu and persisting changes across menu item selection
             state.entities.find(item => item.id === action.payload.id).name = action.payload.name
