@@ -14,6 +14,7 @@ import { useState } from 'react';
 import BlueRateValue from './BlueRateValue';
 import EditMenuItems from './EditMenuItems';
 import EditMenus from './EditMenus';
+import Dashboard from './Dashboard/Dashboard';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
   
   return (
     <>  
-    <NavBar />
+    {/* <NavBar />
     <button onClick={handleLogout}>Logout</button>
     { blue ? <BlueRateValue blue={blue}/> : null }
     <Switch>
@@ -64,9 +65,8 @@ function App() {
         <MenusContainer/>
       </Route>
 
-      
-
-    </Switch>
+    </Switch> */}
+    <Dashboard/>
     </>
   );
 }
