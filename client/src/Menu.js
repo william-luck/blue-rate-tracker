@@ -1,4 +1,8 @@
+import { Card, CardContent } from "@material-ui/core"
 import { useSelector } from "react-redux"
+import MenuItemCard from "./MenuItemCard"
+import Title from "./Dashboard/Title"
+import { Grid } from "@material-ui/core"
 
 function Menu() {
 
@@ -14,11 +18,23 @@ function Menu() {
     return(
         <>
         <div>
-            {menu.name}
-            <ul>
-                {menu.menu_items.map(item => <li key={item.name}>{item.name}: {calculatePrice(item)}</li>)}
-            </ul>
+            <Title>{menu.name}</Title>
+
+            <Grid container spacing={3}>
+                {menu.menu_items.map(item => {
+                    return (
+                        <Grid item xs={6} sm={4}>
+                            <MenuItemCard key={item.name} item={item}/>
+                        </Grid>
+                    )
+                })}
+            </Grid>
+            
+
+
         </div>
+
+       
         </>
     )
 }
