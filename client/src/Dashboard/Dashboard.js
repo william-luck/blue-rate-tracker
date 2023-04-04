@@ -24,8 +24,9 @@ import Deposits from './Deposits';
 import Orders from './Orders';
 import Title from './Title';
 import { Button } from '@material-ui/core';
-import MenusAlternate from './MenusAlternate';
 import MenusContainer from '../MenusContainer';
+import BlueRateValue from '../BlueRateValue';
+import { useEffect, useState } from 'react';
 
 function Copyright() {
   return (
@@ -133,6 +134,16 @@ export default function Dashboard() {
     setOpen(false);
   };
 
+  const [blue, setBlue] = useState('')
+
+  useEffect(() => {
+    fetch('https://api.bluelytics.com.ar/v2/latest')
+      .then(r => r.json())
+      .then(data => setBlue({rate: data.blue, updated: data.last_update}))
+  },[])
+
+
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -191,13 +202,10 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
 
-            {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                {/* <Chart /> */}
                 <Title>Menus</Title>
 
-                {/* <MenusAlternate /> */}
                 <MenusContainer />
 
               </Paper>
@@ -206,7 +214,7 @@ export default function Dashboard() {
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                <Deposits />
+                {blue ? <BlueRateValue blue={blue}/> : null}
               </Paper>
             </Grid>
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
@@ -18,18 +17,21 @@ export default function Deposits() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Title>Recent Deposits</Title>
+      <Title>Blue Rate</Title>
       <Typography component="p" variant="h4">
-        $3,024.00
+        1 USD to 393 ARS
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        on 15 March, 2019
+        on updated date
       </Typography>
-      <div>
+      <Typography color="textSecondary" className={classes.depositContext}>
+        The database refreshes every day at 6:00 AM, excluding weekends
+      </Typography>
+      {/* <div>
         <Link color="primary" href="#" onClick={preventDefault}>
           View balance
         </Link>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 }
