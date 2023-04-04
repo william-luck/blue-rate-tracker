@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux"
 
+function Menu() {
 
-function Menu( { menu }) {
+    const menu = useSelector(state => state.menus.selected)
 
     function calculatePrice(menu_item) {
         let sub_total = menu_item.ingredients.reduce((accum, curr) => accum + curr.price_of_ingredient, 0)

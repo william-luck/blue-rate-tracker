@@ -19,14 +19,15 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Chart from './Chart';
-import Deposits from './Deposits';
 import Orders from './Orders';
 import Title from './Title';
 import { Button } from '@material-ui/core';
 import MenusContainer from '../MenusContainer';
 import BlueRateValue from '../BlueRateValue';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Menu from '../Menu';
+
 
 function Copyright() {
   return (
@@ -142,8 +143,8 @@ export default function Dashboard() {
       .then(data => setBlue({rate: data.blue, updated: data.last_update}))
   },[])
 
-
-
+  const selectedMenu = useSelector(state => state.menus.selected)
+  
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -202,26 +203,25 @@ export default function Dashboard() {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
 
+            {/* List of Menus */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <Title>Menus</Title>
-
                 <MenusContainer />
-
               </Paper>
             </Grid>
 
-            {/* Recent Deposits */}
+            {/* Blue Rate */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 {blue ? <BlueRateValue blue={blue}/> : null}
               </Paper>
             </Grid>
 
-            {/* Recent Orders */}
+            {/* Selected Menu Detail} */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                {selectedMenu ? <Menu selectedMenu={selectedMenu}/> : 'Select a menu above to view current prices'}
               </Paper>
             </Grid>
 

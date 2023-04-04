@@ -7,6 +7,7 @@ import ViewList from "@material-ui/icons/ViewList"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMenus } from "./menusSlice";
+import { menuSelected } from './menusSlice';
 
 
 
@@ -35,6 +36,10 @@ function MenusContainer() {
 
     const classes = useStyles();
 
+    function handleClick(menu) {
+        dispatch(menuSelected(menu))
+    }
+
     return (
         <Grid container spacing={3}>
             {menus?.map(menu => {
@@ -46,7 +51,7 @@ function MenusContainer() {
                                     {menu.name}
                                 </Grid>
                                 <Grid item >
-                                    <IconButton aria-label="view" className={classes.margin} size="small">
+                                    <IconButton aria-label="view" className={classes.margin} size="small" onClick={() => handleClick(menu)}>
                                         <ArrowDownwardIcon fontSize="inherit" />
                                         <ViewList fontSize='inherit'/>
                                     </IconButton>

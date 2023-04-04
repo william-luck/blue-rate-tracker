@@ -34,12 +34,13 @@ const menusSlice = createSlice({
     name: 'menus',
     initialState: {
         entities: [],
+        selected: '',
         status: 'idle'
     },
     reducers: {
-        // menuAdded
-        // menuUpdated
-        // menuRemoved
+        menuSelected(state, action) {
+            state.selected = action.payload
+        }
     },
     extraReducers: {
         // While loading menus
@@ -60,5 +61,7 @@ const menusSlice = createSlice({
         }
     }
 })
+
+export const { menuSelected } = menusSlice.actions
 
 export default menusSlice.reducer;
