@@ -22,6 +22,10 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import Title from './Title';
+import { Button } from '@material-ui/core';
+import MenusAlternate from './MenusAlternate';
+import MenusContainer from '../MenusContainer';
 
 function Copyright() {
   return (
@@ -120,12 +124,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
@@ -142,16 +149,21 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Dashboard
           </Typography>
+
           <IconButton color="inherit">
+
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
+
           </IconButton>
         </Toolbar>
       </AppBar>
+
       <Drawer
         variant="permanent"
         classes={{
@@ -165,36 +177,52 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
+
         <List>{mainListItems}</List>
+
         <Divider />
         <List>{secondaryListItems}</List>
+
       </Drawer>
+
+
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
+
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <Chart />
+                {/* <Chart /> */}
+                <Title>Menus</Title>
+
+                {/* <MenusAlternate /> */}
+                <MenusContainer />
+
               </Paper>
             </Grid>
+
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
                 <Deposits />
               </Paper>
             </Grid>
+
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
               </Paper>
             </Grid>
+
           </Grid>
+
           <Box pt={4}>
             <Copyright />
           </Box>
+
         </Container>
       </main>
     </div>
