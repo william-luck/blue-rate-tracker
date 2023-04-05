@@ -1,3 +1,4 @@
+import { Divider, makeStyles, TextField } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "./productsSlice";
@@ -27,12 +28,20 @@ function AddProduct() {
         })
     }
 
+    const useStyles = makeStyles(() => ({
+        root: {
+            display: 'flex'
+        }
+    }))
+
+    const classes = useStyles()
+
     return(
         <>
-        <h1>Add Product</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={classes.root} >
             <label>Product name</label>
             <input value={formData.name} name='name' onChange={handleChange}/>
+            {/* <TextField id="standard-basic" name="name" onChange={handleChange} value={formData.name}/> */}
             <br></br>
             {' '}
             <label>Price per unit (kilogram / liter / dozen)</label>
@@ -40,6 +49,13 @@ function AddProduct() {
             <br></br>
             <button type="submit">Add</button>
         </form>
+
+        <br></br>
+        <Divider/>
+        <br></br>
+        A product will be added to the database, but will not be considered as an ingredient until the product is used in a menu item. 
+        <p>Add a Menu Item instead?</p> 
+        Plus Icon push to add menu item
         </>
     )
 }
