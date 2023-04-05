@@ -82,20 +82,7 @@ function Product({ product }) {
                 {product.error ? 'Error: ' + product.error : null}
             </Grid>
         
-            
-            
-            
         </form>
-
-        {/* Name: {!nameEditing ? product.name : <input value={formData.name} onChange={handleChange} name='name'></input>} 
-        <button onClick={handleNameEditClick}>{!nameEditing ? 'Edit' : 'Save'} </button>
-        {' '}
-
-        <li><span>Price per unit: {!editing ? product.price : <input value={formData.price} onChange={handleChange} name="price"></input>}</span>
-        <button onClick={handlePriceEditClick}>{!editing ? 'Edit' : 'Save'}</button></li>
-
-        {product.error ? 'Error: ' + product.error : null} */}
-        <br></br>
         </>
     )
 }
