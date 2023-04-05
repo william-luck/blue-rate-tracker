@@ -10,6 +10,9 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { NavLink } from 'react-router-dom';
+import HomeIcon from '@material-ui/icons/Home'
+import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
+import MenuOpenIcon from '@material-ui/icons/MenuOpen';
 
 
 export const mainListItems = (
@@ -17,7 +20,7 @@ export const mainListItems = (
     <NavLink style={{ textDecoration: 'none', color: 'black' }} to='/' exact>
     <ListItem button>
       <ListItemIcon>
-        <DashboardIcon />
+        <HomeIcon />
       </ListItemIcon>
       <ListItemText primary="Home" />
     </ListItem>
@@ -35,7 +38,7 @@ export const mainListItems = (
     <NavLink style={{ textDecoration: 'none', color: 'black' }} to='/edit-menu-items'>
     <ListItem button>
       <ListItemIcon>
-        <PeopleIcon />
+      <RestaurantMenuIcon />
       </ListItemIcon>
       <ListItemText primary="Edit Menu Items" />
     </ListItem>
@@ -44,7 +47,7 @@ export const mainListItems = (
     <NavLink style={{ textDecoration: 'none', color: 'black' }} to='/add-menu-item'>
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <MenuOpenIcon />
       </ListItemIcon>
       <ListItemText primary="Add Menu Item" />
     </ListItem>
@@ -58,29 +61,5 @@ export const mainListItems = (
       <ListItemText primary="Edit Menus" />
     </ListItem>
     </NavLink>
-  </div>
-);
-
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current month" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
-    </ListItem>
   </div>
 );

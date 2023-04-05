@@ -28,11 +28,12 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Menu from '../Menu';
 import Home from '../Home';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import EditProducts from '../EditProducts';
 import EditMenuItems from '../EditMenuItems';
 import AddMenuItem from '../AddMenuItem';
 import EditMenus from '../EditMenus';
+
 
 
 // This is now the App page, should alwyas display the drawer. The dashbord itself can be refactored from main, the drawer into a separate component
@@ -124,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const location = useLocation()
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -132,6 +134,20 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  function appTitle() {
+    if (location.pathname === '/') {
+        return 'Home'
+    } else {
+
+        return location.pathname.replace(/-/g, ' ').substring(1).split(' ').map(word => word[0].toUpperCase() + word.substring(1)).join(' ')
+    }
+  }
+
+//   useEffect(() => {
+//     setAppTitle(window.location.pathname)
+//   }, [window.location.pathname])
+
 
 
   
@@ -152,7 +168,7 @@ export default function Dashboard() {
           </IconButton>
 
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            {appTitle()}
           </Typography>
 
           <IconButton color="inherit">
@@ -180,9 +196,6 @@ export default function Dashboard() {
         <Divider />
 
         <List>{mainListItems}</List>
-
-        <Divider />
-        <List>{secondaryListItems}</List>
 
       </Drawer>
       <main className={classes.content}>
