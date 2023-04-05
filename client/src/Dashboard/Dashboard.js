@@ -27,20 +27,18 @@ import BlueRateValue from '../BlueRateValue';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Menu from '../Menu';
+import Home from '../Home';
+import { Switch, Route } from 'react-router-dom';
+import EditProducts from '../EditProducts';
+import EditMenuItems from '../EditMenuItems';
+import AddMenuItem from '../AddMenuItem';
+import EditMenus from '../EditMenus';
 
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// This is now the App page, should alwyas display the drawer. The dashbord itself can be refactored from main, the drawer into a separate component
+
+
+
 
 const drawerWidth = 240;
 
@@ -135,17 +133,8 @@ export default function Dashboard() {
     setOpen(false);
   };
 
-  const [blue, setBlue] = useState('')
 
-  useEffect(() => {
-    fetch('https://api.bluelytics.com.ar/v2/latest')
-      .then(r => r.json())
-      .then(data => setBlue({rate: data.blue, updated: data.last_update}))
-  },[])
-
-  const selectedMenu = useSelector(state => state.menus.selected)
   
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
@@ -196,43 +185,38 @@ export default function Dashboard() {
         <List>{secondaryListItems}</List>
 
       </Drawer>
-
-
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
 
-            {/* List of Menus */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Title>Menus</Title>
-                <MenusContainer />
-              </Paper>
-            </Grid>
+        <Switch>
 
-            {/* Blue Rate */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                {blue ? <BlueRateValue blue={blue}/> : null}
-              </Paper>
-            </Grid>
+            <Route path='/edit-products'>
+                <EditProducts />
+            </Route>
 
-            {/* Selected Menu Detail} */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                {selectedMenu ? <Menu selectedMenu={selectedMenu}/> : 'Select a menu above to view current prices'}
-              </Paper>
-            </Grid>
+            <Route path='/edit-menu-items'>
+                <EditMenuItems />
+            </Route>
 
-          </Grid>
+            <Route path='/add-menu-item'>
+                <AddMenuItem />
+            </Route>
 
-          <Box pt={4}>
-            <Copyright />
-          </Box>
+            <Route path='/edit-menus'>
+                <EditMenus/>
+            </Route>
 
-        </Container>
+            <Route path='/'>
+                <Home/>
+            </Route>
+
+        </Switch>
+
+
       </main>
+
+
+      
     </div>
   );
 }

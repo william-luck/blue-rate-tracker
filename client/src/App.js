@@ -59,9 +59,9 @@ function App() {
 
       <Route path='/edit-menu-items'>
         <EditMenuItems />
-      </Route>
+      </Route> */}
 
-      <Route path='/'>
+      {/* <Route path='/'>
         <MenusContainer/>
       </Route>
 
