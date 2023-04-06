@@ -7,6 +7,7 @@ import { editItem } from "./menuItemsSlice";
 import { Button, Divider, TextField } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import Title from "./Dashboard/Title";
+import Container from "@material-ui/core/Container";
 
 
 
@@ -174,8 +175,15 @@ function EditMenuItem({ item }) {
 
     
         {/* List of ingredients to edit */}
-        {item.ingredients?.map(ingredient => <EditIngredient ingredient={ingredient} key={ingredient.id}/>)}
-
+        <Title>Ingredients</Title>
+        <Container>
+        {item.ingredients?.map(ingredient => {
+            return (
+                
+                    <EditIngredient ingredient={ingredient} key={ingredient.id}/>
+                
+        )})}
+        </Container>
         </>
     )
 

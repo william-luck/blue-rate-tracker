@@ -1,11 +1,14 @@
+import { TextField } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ingredientEdited } from "./ingredientsSlice";
+import Button from "@material-ui/core/Button";
 
 
 function EditIngredient({ ingredient }) {
 
     const [editing, setEditing ] = useState(false)
+    const [quantity, setQuantity] = useState(calculateQuantity())
 
     const dispatch = useDispatch()
 
@@ -14,10 +17,13 @@ function EditIngredient({ ingredient }) {
         setEditing(true)
     }
 
+    function handleChange(e) {
+        setQuantity(e.target.value)
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
-        
-        dispatch(ingredientEdited({id: ingredient.id, quantity: e.target[0].value, name: ingredient.product_name}))
+        dispatch(ingredientEdited({id: ingredient.id, quantity: quantity, name: ingredient.product_name}))
         setEditing(false)
     }
 
@@ -33,10 +39,10 @@ function EditIngredient({ ingredient }) {
         <>
         <form onSubmit={e => handleSubmit(e)} >
         <div>
-            <label>{ingredient.product_name}: </label>
-            {!editing ? <label>{calculateQuantity()}</label> : <input placeholder={calculateQuantity()}/>} 
+            {!editing ? <Button onClick={e => handleClick(e)} variant='contained' color="primary" size="small">Edit</Button> : <div style={{display:'inline-block', paddingRight: '10px'}}><Button type="submit" id="submit" variant='contained' color="primary" size="small">Save</Button>{' '}<Button onClick={() => setEditing(false)} variant='contained' color="primary" size="small">Cancel</Button></div> }    
+            {!editing ? <label> {ingredient.product_name}: {calculateQuantity()}</label> : <TextField helperText={ingredient.product_name} value={quantity} onChange={handleChange}/>} 
             {ingredient.product_name === 'egg' ? ' eggs' : ' grams / mililiters'} {' '}
-            {!editing ? <button onClick={e => handleClick(e)}>Edit</button> : <div style={{display:'inline-block'}}><button type="submit" id="submit">Save</button><button onClick={() => setEditing(false)}>Cancel</button></div> }
+            
         </div>
         <br></br>
         </form>
