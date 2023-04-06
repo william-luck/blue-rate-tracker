@@ -1,3 +1,4 @@
+import { TextField } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { assignQuantity } from "./ingredientsSlice";
@@ -19,10 +20,7 @@ function AddQuantityToIngredient({ ingredient }) {
 
     return (
         <span>
-            <label>{ingredient.name}: {' '}</label>
-            <input value={ingredient.quantity} onChange={handleChange} />{' '} 
-            {ingredient.name === 'egg' ? 'eggs' : 'grams / mililiters'}
-            <br></br>
+            <TextField value={ingredient.quantity} onChange={handleChange} label={ingredient.name} helperText={ingredient.name === 'egg' ? 'eggs' : 'grams / mililiters'}/>{' '} 
             <br></br>
         </span>
     )

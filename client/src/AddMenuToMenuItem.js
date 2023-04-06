@@ -1,9 +1,11 @@
+import { MenuItem, TextField, Typography } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { assignMenu } from "./ingredientsSlice";
 
 function AddMenuToMenuItem() {
 
     const menus = useSelector(state => state.menus.entities)
+    const selectedMenu = useSelector(state => state.ingredientsSelected.menu)
     const dispatch = useDispatch()
 
     function handleChange(e) {
@@ -11,13 +13,11 @@ function AddMenuToMenuItem() {
     }
 
     return (
-        <>
-        <label>Select a Menu to add Menu Item:</label>
-        <select id="menus" name="menus" onChange={handleChange}>
-            <option value=''>Unassigned</option>
-            {menus?.map(menu => <option key={menu.name} value={menu.name}>{menu.name}</option>)}
-        </select>
-        </>
+        <div>
+        <TextField select id="menus" name="menus" onChange={handleChange} label="Select a menu for the new menu item" style={{width: "50ch"}} value={selectedMenu}>
+            {menus?.map(menu => <MenuItem key={menu.name} value={menu.name}>{menu.name}</MenuItem>)}
+        </TextField>
+        </div>
     )
 }
 

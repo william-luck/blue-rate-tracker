@@ -14,7 +14,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Container } from "@material-ui/core";
+import { Container, TextField } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 
 
@@ -22,7 +22,7 @@ function AddMenuItem() {
 
     // After the third step, only want to then add to selected ingredients... 
     // If unchecked, need to remove
-    
+
 
 
     const dispatch = useDispatch()
@@ -64,15 +64,14 @@ function AddMenuItem() {
         switch (step) {
             case 0:
                 return (
-                    <>
-                    <label>Enter name for new menu item:</label>
-                    <input value={name} onChange={e => dispatch(assignName(e.target.value))}/>
-                    </>
+                    <div>
+                    <TextField value={name} onChange={e => dispatch(assignName(e.target.value))} label="Enter name for new menu item" style={{width: "50ch"}}/>
+                    </div>
                 )
             case 1:
                 return (
                     <>
-                    <AddMenuToMenuItem />
+                        <AddMenuToMenuItem />
                     </>
                 )
           case 2:
@@ -137,7 +136,12 @@ function AddMenuItem() {
           <div>
             <Container>
                 <Paper>
-                    {getStepContent(activeStep)}
+                    <Container>
+                        <br></br>
+                        {getStepContent(activeStep)}
+                        <br></br>
+                        <br></br>
+                    </Container>
                 </Paper>
             </Container>
                 
