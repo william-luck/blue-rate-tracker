@@ -19,6 +19,10 @@ function AddIngredientsChecklist() {
         }
     }
 
+    function isChecked(id) {
+
+    }
+
     return (
         <>
         Add ingredients to new menu item:  
@@ -28,7 +32,6 @@ function AddIngredientsChecklist() {
                         <input type="checkbox" id={product.id} name={product.name} value={product.name} onClick={handleClick}/>
                         <label>{product.name}</label>
                         {' '}
-                        {/* {selected ? <span><input placeholder="Quantity" value={ingredientData.quantity} onChange={addQuantity}/> grams/mililiters</span>: null} */}
                     </div>   
                 )
             })}
