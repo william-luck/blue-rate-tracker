@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { editItem } from "./menuItemsSlice";
+import { Button, Divider, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import Title from "./Dashboard/Title";
 
 
 
@@ -108,25 +111,66 @@ function EditMenuItem({ item }) {
     return(
         <>
         <br></br>
+        {/* <Grid container spacing={1} direction='row' alignItems='center' justifyContent='space-evenly'> */}
+            {/* <Grid item>
+                Name: {!nameEditing ? <label> {menuItemName} </label> : <TextField onChange={handleNameChange} value={menuItemName} label='Menu Item Name'/>}
+                {!nameEditing ? <button onClick={handleNameEditClick}>Edit</button>: <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Save</button><button onClick={handleNameCancel}>Cancel</button></div>}
+            </Grid>
+    
+            <Grid item>
+                <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
+                {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Reassign</button><button onClick={handleMenuCancel}>Cancel</button></div>}
+            </Grid>
+
+            <Grid item>
+                <label>Price {!priceEditing ? price : <input value={price} onChange={handlePriceChange}/>} </label>
+                {!priceEditing? <button onClick={handlePriceEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Override</button><button onClick={handlePriceCancel}>Cancel</button></div>}
+            </Grid> */}
+            
+        {/* </Grid> */}
+        {/* <br></br>
+        <Divider/>
+        <br></br> */}
+        <Title>Menu Item Information</Title>
+        <Grid container spacing={5} direction='row' alignItems='center' justifyContent='space-evenly'>
+            
+            <Grid item>
+                {!nameEditing ? <label> Name: {menuItemName} </label> : <TextField onChange={handleNameChange} value={menuItemName}/>}
+                {!nameEditing ? <Button onClick={handleNameEditClick} variant='contained' color="primary" size="small">Edit</Button>: <div style={{display:'inline-block'}}>{' '}<Button onClick={handleSubmit} variant='contained' color="primary" size="small">Save</Button>{' '}<Button onClick={handleNameCancel} variant='contained' color="primary" size="small">Cancel</Button></div>}
+            </Grid>
+    
+            <Grid item>
+                <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
+                {!menuEditing ? <Button onClick={handleEditClick} variant='contained' color="primary" size="small">Edit</Button> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit} variant='contained' color="primary" size="small">Reassign</Button><Button onClick={handleMenuCancel} variant='contained' color="primary" size="small">Cancel</Button></div>}
+            </Grid>
+
+            <Grid item>
+                <label>Price {!priceEditing ? price : <TextField value={price} onChange={handlePriceChange}/>} </label>
+                {!priceEditing? <Button onClick={handlePriceEditClick} variant='contained' color="primary" size="small">Edit</Button> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit} variant='contained' color="primary" size="small">Override</Button>{' '}<Button onClick={handlePriceCancel} variant='contained' color="primary" size="small">Cancel</Button></div>}
+            </Grid>
+            
+        </Grid>
+
+        <br></br>
+        <Divider/>
         <br></br>
         {/* Name of MenuItem */}
-        Name: {!nameEditing ? <label> {menuItemName} </label> : <input onChange={handleNameChange} value={menuItemName}/>}
+        {/* Name: {!nameEditing ? <label> {menuItemName} </label> : <TextField onChange={handleNameChange} value={menuItemName}/>}
         {!nameEditing ? <button onClick={handleNameEditClick}>Edit</button>: <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Save</button><button onClick={handleNameCancel}>Cancel</button></div>}
-
         <br></br>
-        <br></br>
+        <br></br> */}
 
         {/* Assigned Menu */}
-        <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
+        {/* <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
         {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Reassign</button><button onClick={handleMenuCancel}>Cancel</button></div>}
         <br></br>
-        <br></br>
+        <br></br> */}
 
         {/* Override Price */}
-        <label>Price {!priceEditing ? price : <input value={price} onChange={handlePriceChange}/>} </label>
+        {/* <label>Price {!priceEditing ? price : <input value={price} onChange={handlePriceChange}/>} </label>
         {!priceEditing? <button onClick={handlePriceEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Override</button><button onClick={handlePriceCancel}>Cancel</button></div>}
         <br></br>
-        <br></br>
+        <br></br> */}
 
     
         {/* List of ingredients to edit */}

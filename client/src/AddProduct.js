@@ -43,17 +43,6 @@ function AddProduct() {
 
     return(
         <>
-        {/* <form onSubmit={handleSubmit} className={classes.root} >
-            <label>Product name</label>
-            <input value={formData.name} name='name' onChange={handleChange}/>
-            {/* <TextField id="standard-basic" name="name" onChange={handleChange} value={formData.name}/> */}
-            {/* <br></br>
-            {' '}
-            <label>Price per unit (kilogram / liter / dozen)</label>
-            <input value={formData.quantity} name='price' onChange={handleChange}/>
-            <br></br>
-            <button type="submit">Add</button>
-        </form> */} 
 
         <form className={classes.root} onSubmit={handleSubmit}>
             <Grid container spacing={1} direction='row' alignItems="center" justifyContent="space-evenly">
@@ -66,13 +55,7 @@ function AddProduct() {
                 </Grid>
                 <Button variant="contained" color="primary" type="submit">Save</Button>
             </Grid>
-            
-                    
-        
-
-            
         </form>
-
         <br></br>
         <Divider/>
         <br></br>

@@ -2,6 +2,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import EditMenuItem from "./EditMenuItem";
 import { fetchMenuItems, ingredientSelected } from "./menuItemsSlice";
+import { Divider, Menu, MenuItem } from "@material-ui/core";
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles } from "@material-ui/core";
 
 
 function EditMenuItems() {
@@ -29,20 +34,57 @@ function EditMenuItems() {
                 return false
             }
         }
-        
     }
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+          },
+          paper: {
+            padding: theme.spacing(2),
+            display: 'flex',
+            overflow: 'auto',
+            flexDirection: 'column',
+          },
+          fixedHeight: {
+            height: 240,
+          },
+          container: {
+            paddingTop: theme.spacing(3),
+            paddingBottom: theme.spacing(3),
+          }
+      }))
+    
+      const classes = useStyles();
 
     return (
         <>
-        <label>Select a menu Item to edit: </label>
-        <select id='menuItem' name='menuItem' onChange={handleChange}>
-            <option value=''>None</option>
-            {menuItems?.map(menuItem => {
-            return <option key={menuItem.id} value={menuItem.id} selected={selected(menuItem.id)}>{menuItem.name}</option>
-            })}
-        </select>
+        <Container maxWidth='lg' className={classes.container}>
+        <Grid container spacing={3}>
+            <Grid item xs={12} >
+            <Paper>
+                <Container className={classes.container}>
+            <label>Select a menu Item to edit: </label>
 
-        {!Array.isArray(selectedItem) && selectedItem ? <EditMenuItem item={selectedItem}/> : null}
+                <select id='menuItem' name='menuItem' onChange={handleChange}>
+                    <option value=''>None</option>
+                    {menuItems?.map(menuItem => {
+                    return <option key={menuItem.id} value={menuItem.id} selected={selected(menuItem.id)}>{menuItem.name}</option>
+                    })}
+                </select>
+                <br></br>
+                <br></br>
+                <Divider/>
+
+                {!Array.isArray(selectedItem) && selectedItem ? <EditMenuItem item={selectedItem}/> : null}
+                </Container>
+            </Paper>
+            </Grid>
+        </Grid>
+
+        </Container>
+        
+        
         </>
     )
 }

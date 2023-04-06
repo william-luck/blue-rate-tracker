@@ -21,25 +21,8 @@ function Product({ product }) {
         })
     }, [product, dispatch])
 
-    const [editing, setEditing] = useState(false)
-    const [nameEditing, setNameEditing] = useState(false)
     const [error, setError] = useState('')
 
-    
-
-    function handlePriceEditClick() {
-        if (editing) {
-            dispatch(editProduct(formData))
-        }
-        setEditing(prevValue => !prevValue)
-    }
-
-    function handleNameEditClick() {
-        if (nameEditing) {
-            dispatch(editProduct(formData))
-        }
-        setNameEditing(prevValue => !prevValue)
-    }
 
     function handleChange(e) {
         setFormData({
