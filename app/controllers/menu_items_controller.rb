@@ -38,6 +38,10 @@ class MenuItemsController < ApplicationController
     end
 
     def destroy
+
+        menu_item = MenuItem.find(params[:id])
+        menu_item.destroy
+        render json: menu_item, status: :accepted
     end
 
 

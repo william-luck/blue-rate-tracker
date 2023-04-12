@@ -19,7 +19,7 @@ function EditMenuItems() {
 
     useEffect(() => {
         dispatch(fetchMenuItems())
-    }, [])
+    }, [dispatch])
 
     function handleChange(e) {
         const item = menuItems.find(menuItem => menuItem.id == e.target.value)

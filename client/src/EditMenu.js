@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { editMenuName } from "./menusSlice";
+import { TextField } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 
 function EditMenu({ name, id }) {
 
@@ -9,6 +11,8 @@ function EditMenu({ name, id }) {
     const [menuName, setMenuName] = useState(name)
 
     const dispatch = useDispatch()
+    
+
 
     function handleEditClick(){
         setMenuEditing(true)
@@ -31,10 +35,13 @@ function EditMenu({ name, id }) {
 
     return(
         <>
-        <label>Menu Name: {!menuEditing ? name : <input value={menuName} onChange={handleChange}/>} </label>
-        {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Save</button><button onClick={handleCancel}>Cancel</button></div>}
+        <div style={{display: 'inline-block'}}>
+        {!menuEditing ? <Button onClick={handleEditClick} variant="contained" color="primary" size='small'>Edit</Button> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit}>Save</Button><Button onClick={handleCancel}>Cancel</Button></div>}
+        {!menuEditing ? <label>{' '}{name}</label> : <TextField helperText='Enter new name for menu' onChange={handleChange} value={menuName}></TextField> }
+        </div>
         <br></br>
         <br></br>
+
         </>
     )
 }

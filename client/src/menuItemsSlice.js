@@ -19,7 +19,7 @@ export const addMenuItem = createAsyncThunk('menuItems/AddMenuItem', async (data
 })
 
 export const editItem = createAsyncThunk('menuItems/editItem', async (menuItem) => {
-    const response = await fetch(`menu_items/${menuItem.item_id}`, {
+    const response = await fetch(`/menu_items/${menuItem.item_id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -27,6 +27,14 @@ export const editItem = createAsyncThunk('menuItems/editItem', async (menuItem) 
         body: JSON.stringify(menuItem)
     })
     
+    return response.json()
+})
+
+export const deleteItem = createAsyncThunk('menuItems/deleteItem', async (id) => {
+    const response = await fetch(`/menu_items/${id}`, {
+        method: 'DELETE'
+    })
+
     return response.json()
 })
 
@@ -70,6 +78,12 @@ const menuItemsSlice = createSlice({
 
             // For updating title in dropdown menu and persisting changes across menu item selection
             state.entities.find(item => item.id === action.payload.id).name = action.payload.name
+        },
+        [deleteItem.fulfilled] (state, action) {
+            // Need to find index of deleted item, splice that from array (mutable)
+            const index = state.entities.findIndex(menuItem => menuItem.id === action.payload.id)
+            state.entities.splice(index, 1)
+            state.selectedItem = []
         }
     
     }

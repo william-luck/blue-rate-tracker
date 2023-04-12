@@ -8,6 +8,7 @@ import { Button, Divider, TextField } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import Title from "./Dashboard/Title";
 import Container from "@material-ui/core/Container";
+import { deleteItem } from "./menuItemsSlice";
 
 
 
@@ -101,6 +102,10 @@ function EditMenuItem({ item }) {
         }))  
     }
 
+    function handleDelete() {
+        dispatch(deleteItem(item.id))
+    }
+
     function menuDropDown() {
         return(
             <select onChange={handleEditMenu} value={selectedMenu}>    
@@ -112,26 +117,6 @@ function EditMenuItem({ item }) {
     return(
         <>
         <br></br>
-        {/* <Grid container spacing={1} direction='row' alignItems='center' justifyContent='space-evenly'> */}
-            {/* <Grid item>
-                Name: {!nameEditing ? <label> {menuItemName} </label> : <TextField onChange={handleNameChange} value={menuItemName} label='Menu Item Name'/>}
-                {!nameEditing ? <button onClick={handleNameEditClick}>Edit</button>: <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Save</button><button onClick={handleNameCancel}>Cancel</button></div>}
-            </Grid>
-    
-            <Grid item>
-                <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
-                {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Reassign</button><button onClick={handleMenuCancel}>Cancel</button></div>}
-            </Grid>
-
-            <Grid item>
-                <label>Price {!priceEditing ? price : <input value={price} onChange={handlePriceChange}/>} </label>
-                {!priceEditing? <button onClick={handlePriceEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Override</button><button onClick={handlePriceCancel}>Cancel</button></div>}
-            </Grid> */}
-            
-        {/* </Grid> */}
-        {/* <br></br>
-        <Divider/>
-        <br></br> */}
         <Title>Menu Item Information</Title>
         <Grid container spacing={5} direction='row' alignItems='center' justifyContent='space-evenly'>
             
@@ -155,24 +140,6 @@ function EditMenuItem({ item }) {
         <br></br>
         <Divider/>
         <br></br>
-        {/* Name of MenuItem */}
-        {/* Name: {!nameEditing ? <label> {menuItemName} </label> : <TextField onChange={handleNameChange} value={menuItemName}/>}
-        {!nameEditing ? <button onClick={handleNameEditClick}>Edit</button>: <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Save</button><button onClick={handleNameCancel}>Cancel</button></div>}
-        <br></br>
-        <br></br> */}
-
-        {/* Assigned Menu */}
-        {/* <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
-        {!menuEditing ? <button onClick={handleEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Reassign</button><button onClick={handleMenuCancel}>Cancel</button></div>}
-        <br></br>
-        <br></br> */}
-
-        {/* Override Price */}
-        {/* <label>Price {!priceEditing ? price : <input value={price} onChange={handlePriceChange}/>} </label>
-        {!priceEditing? <button onClick={handlePriceEditClick}>Edit</button> : <div style={{display:'inline-block'}}><button onClick={handleSubmit}>Override</button><button onClick={handlePriceCancel}>Cancel</button></div>}
-        <br></br>
-        <br></br> */}
-
     
         {/* List of ingredients to edit */}
         <Title>Ingredients</Title>
@@ -184,6 +151,10 @@ function EditMenuItem({ item }) {
                 
         )})}
         </Container>
+
+            <Grid container justifyContent='center' direction="row">
+                <Button variant="contained" color="secondary" size="large" onClick={handleDelete}>Delete Menu Item</Button>
+            </Grid>
         </>
     )
 
