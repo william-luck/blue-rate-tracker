@@ -12,8 +12,8 @@ const store = configureStore({
     menus: menusReducer,
     users: usersReducer,
     products: productsReducer,
+    menuItems: menuItemsReducer,
     ingredientsSelected: ingredientsReducer,
-    menuItems: menuItemsReducer
   },
 })
 

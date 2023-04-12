@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+// import { addMenuItem } from "./menuItemsSlice"
+
 
 export const ingredientEdited = createAsyncThunk('ingredients/ingredientEdited', async(ingredient) => {
 
@@ -37,13 +39,24 @@ const ingredientsSlice = createSlice({
         assignQuantity(state, action) {
             const ingredient = state.entities.find(ingredient => ingredient.product_id === action.payload.id)
             ingredient.quantity = action.payload.quantity
+        },
+        clearPendingData(state) {
+            state.entities = []
+            state.menu = ''
+            state.name = ''
         }
     }, 
     extraReducers: {
-        // 
+        // [addMenuItem.fulfilled] (state) {
+        //     debugger
+        //     state.entities = ''
+        //     state.menu = ''
+        //     state.name = ''
+        // }
+        }
     }
-})
+)
 
-export const {ingredientAdded, ingredientRemoved, assignMenu, assignName, assignQuantity } = ingredientsSlice.actions;
+export const {ingredientAdded, ingredientRemoved, assignMenu, assignName, assignQuantity, clearPendingData } = ingredientsSlice.actions;
 
 export default ingredientsSlice.reducer

@@ -4,7 +4,7 @@ import AddIngredientsChecklist from "./AddIngredientsChecklist";
 import AddMenuToMenuItem from "./AddMenuToMenuItem";
 import AddQuantities from "./AddQuantities";
 
-import { assignName } from "./ingredientsSlice";
+import { assignName, clearPendingData } from "./ingredientsSlice";
 import { addMenuItem } from "./menuItemsSlice";
 import AddProduct from "./AddProduct";
 import React from 'react';
@@ -26,6 +26,8 @@ function AddMenuItem() {
 
     function handleSubmit() {
       dispatch(addMenuItem(pendingData))
+      dispatch(clearPendingData())
+      console.log('dispatched clear pending data')
     }
 
     const useStyles = makeStyles((theme) => ({
