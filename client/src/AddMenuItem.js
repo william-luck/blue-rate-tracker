@@ -20,25 +20,12 @@ import Paper from "@material-ui/core/Paper";
 
 function AddMenuItem() {
 
-    // After the third step, only want to then add to selected ingredients... 
-    // If unchecked, need to remove
-
-
-
     const dispatch = useDispatch()
     const name = useSelector(state => state.ingredientsSelected.name)
     const pendingData = useSelector(state => state.ingredientsSelected)
 
-    // const [submitted, setSubmitted] = useState(false)
-
-    // function handleInitialSubmit(e) {
-    //     e.preventDefault();
-    //     setSubmitted(true)
-    // }
-
-    function handleMenuItemSubmit() {
-        // Dispatch to menu item reducer, async call to menu_item controller
-        dispatch(addMenuItem(pendingData))
+    function handleSubmit() {
+      dispatch(addMenuItem(pendingData))
     }
 
     const useStyles = makeStyles((theme) => ({
@@ -96,6 +83,11 @@ function AddMenuItem() {
     const steps = getSteps();
 
     const handleNext = () => {
+
+        if (activeStep === 3) {
+          handleSubmit()
+        }
+
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
 
@@ -126,10 +118,10 @@ function AddMenuItem() {
         {activeStep === steps.length ? (
           <div>
             <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
+              Menu Item added!
             </Typography>
             <Button onClick={handleReset} className={classes.button}>
-              Reset
+              Add another item
             </Button>
           </div>
         ) : (
@@ -157,49 +149,13 @@ function AddMenuItem() {
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                {activeStep === steps.length - 1 ? 'Add Menu Item' : 'Next'}
               </Button>
             </div>
           </div>
         )}
       </div>
     </div>
-
-    <div>
-        
-    </div>
-        {/* {!submitted ? 
-
-        <div>
-         <form onSubmit={handleInitialSubmit}> 
-            <label>Enter name for new menu item:</label>
-            <input value={name} onChange={e => dispatch(assignName(e.target.value))}/>
-            <br></br>
-            <AddMenuToMenuItem />
-            <br></br>
-            <AddIngredientsChecklist />
-            <br></br>
-            <button type="submit">Finished, proceed to enter quantities</button>
-        </form>
-
-
-        <h2>Add new ingredient?</h2>
-        <AddProduct />
-
-        </div>
-
-        :
-        
-        <div>
-            <p>You are adding {pendingData.name} to the {pendingData.menu} menu.</p>
-            <p>Please enter the quantities of each ingredient to be used in {pendingData.name}</p>
-            <AddQuantities/>
-
-            <p>A price will automatically be calculated from the above ingredients and quantities.</p>
-            <button onClick={handleMenuItemSubmit}>Add Menu Item</button>
-        </div>
-
-        } */}
         </>
     )
    
