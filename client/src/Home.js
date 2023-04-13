@@ -37,6 +37,7 @@ function Home() {
     fetch('https://api.bluelytics.com.ar/v2/latest')
       .then(r => r.json())
       .then(data => setBlue({rate: data.blue, updated: data.last_update}))
+      
   },[])
 
   const selectedMenu = useSelector(state => state.menus.selected)

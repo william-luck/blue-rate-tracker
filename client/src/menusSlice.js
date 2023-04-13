@@ -68,7 +68,6 @@ const menusSlice = createSlice({
             state.entities.push(action.payload)
         },
         [deleteMenu.fulfilled] (state, action) {
-            debugger
             const index = state.entities.findIndex(menu => menu.id === action.payload.id)
             state.entities.splice(index, 1)
         }

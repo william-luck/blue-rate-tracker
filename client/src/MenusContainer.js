@@ -32,6 +32,7 @@ function MenusContainer() {
     // Retrieve menus with nested menu items
     useEffect(() => {
         dispatch(fetchMenus())
+        dispatch(menuSelected(''))
       }, [dispatch])
 
     const classes = useStyles();
