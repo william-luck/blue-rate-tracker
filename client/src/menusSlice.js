@@ -30,6 +30,14 @@ export const addMenu = createAsyncThunk('menus/addMenu', async (name) => {
         .then(response => response.json())
 })
 
+export const deleteMenu = createAsyncThunk('menus/deleteMenu', async (id) => {
+    const response = await fetch(`menus/${id}`, {
+        method: 'DELETE'
+    })
+    
+    return response.json()
+})
+
 const menusSlice = createSlice({
     name: 'menus',
     initialState: {
@@ -58,6 +66,11 @@ const menusSlice = createSlice({
         },
         [addMenu.fulfilled] (state, action) {
             state.entities.push(action.payload)
+        },
+        [deleteMenu.fulfilled] (state, action) {
+            debugger
+            const index = state.entities.findIndex(menu => menu.id === action.payload.id)
+            state.entities.splice(index, 1)
         }
     }
 })

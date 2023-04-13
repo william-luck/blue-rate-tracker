@@ -38,8 +38,6 @@ export const deleteItem = createAsyncThunk('menuItems/deleteItem', async (id) =>
     return response.json()
 })
 
-// export const editName = createAsyncThunk('menuItems/editName', as)
-
 const menuItemsSlice = createSlice({
     name: 'menu_items',
     initialState: {

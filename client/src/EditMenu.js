@@ -3,9 +3,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editMenuName } from "./menusSlice";
 import { TextField } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core"
 
-function EditMenu({ name, id }) {
+function EditMenu({ name, id, setAlertShow }) {
 
     const [menuEditing, setMenuEditing] = useState(false)
     const [menuName, setMenuName] = useState(name)
@@ -27,6 +27,10 @@ function EditMenu({ name, id }) {
         setMenuName(name)
     }
 
+    function handleDelete() {
+        setAlertShow({name: name, id: id})
+    }
+
     function handleSubmit(e){
         e.preventDefault()
         dispatch(editMenuName({id: id, name: menuName}))
@@ -35,8 +39,10 @@ function EditMenu({ name, id }) {
 
     return(
         <>
+
+
         <div style={{display: 'inline-block'}}>
-        {!menuEditing ? <Button onClick={handleEditClick} variant="contained" color="primary" size='small'>Edit</Button> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit}>Save</Button><Button onClick={handleCancel}>Cancel</Button></div>}
+        {!menuEditing ? <div style={{display: 'inline-block'}}><Button variant="contained" color="secondary" size='small' onClick={handleDelete}>Delete</Button>{' '}<Button onClick={handleEditClick} variant="contained" color="primary" size='small'>Edit</Button></div> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit}>Save</Button><Button onClick={handleCancel}>Cancel</Button></div>}
         {!menuEditing ? <label>{' '}{name}</label> : <TextField helperText='Enter new name for menu' onChange={handleChange} value={menuName}></TextField> }
         </div>
         <br></br>

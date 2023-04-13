@@ -19,6 +19,12 @@ class MenusController < ApplicationController
         render json: menu, status: :accepted
     end
 
+    def destroy
+        menu = Menu.find(params[:id])
+        menu.destroy
+        render json: menu, status: :accepted
+    end
+
     private
     
     def menu_params
