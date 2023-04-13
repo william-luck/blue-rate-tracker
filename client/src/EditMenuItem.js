@@ -17,7 +17,7 @@ function EditMenuItem({ item }) {
     const [menuItemName, setMenuItemName] = useState(item.name)
     const [nameEditing, setNameEditing] = useState(false)
     const [menuEditing, setMenuEditing] = useState(false)
-    const [selectedMenu, setSelectedMenu] = useState(item.menu.name)
+    const [selectedMenu, setSelectedMenu] = useState('')
     const [priceEditing, setPriceEditing] = useState(false)
     const [price, setPrice] = useState('')
 
@@ -39,9 +39,12 @@ function EditMenuItem({ item }) {
         setMenuEditing(false)
         setNameEditing(false)
         setPriceEditing(false)
-        setSelectedMenu(item.menu.name)
+        // setSelectedMenu(item.menu.name)
         setMenuItemName(item.name)
 
+        if (item.menu) {
+            setSelectedMenu(item.menu.name)
+        }
 
     },[item])
 
@@ -68,7 +71,9 @@ function EditMenuItem({ item }) {
 
     function handleMenuCancel() {
         setMenuEditing(false)
-        setSelectedMenu(item.menu.name)
+        if (item.menu) {
+            setSelectedMenu(item.menu.name)
+        }
     }
 
     function handlePriceChange(e){
@@ -87,19 +92,26 @@ function EditMenuItem({ item }) {
     function handleSubmit(e) {
         e.preventDefault()
 
-        // Need to do something to calculate new price ratio... from old price received from item prop 
-        // New price / subtotal = price_ratio... 
-
         let subTotal = item.ingredients.reduce((accum, curr) => accum + curr.price_of_ingredient, 0)
         let priceRatio = price / subTotal
 
-        const menuId = menus.find(menu => menu.name === selectedMenu).id
-        dispatch(editItem({
-            item_id: item.id,
-            name: menuItemName,
-            menu_id: menuId,
-            price_ratio: priceRatio
-        }))  
+        if (selectedMenu) {
+            const menuId = menus.find(menu => menu.name === selectedMenu).id
+            dispatch(editItem({
+                item_id: item.id,
+                name: menuItemName,
+                menu_id: menuId,
+                price_ratio: priceRatio
+            }))  
+        } else {
+            dispatch(editItem({
+                item_id: item.id,
+                name: menuItemName,
+                menu_id: null,
+                price_ratio: priceRatio
+            }))
+        }
+        
     }
 
     function handleDelete() {
@@ -108,7 +120,8 @@ function EditMenuItem({ item }) {
 
     function menuDropDown() {
         return(
-            <select onChange={handleEditMenu} value={selectedMenu}>    
+            <select onChange={handleEditMenu} value={selectedMenu}>
+                <option value={''}>Unassigned</option>    
                 {menus.map(menu => <option key={menu.id} id={menu.id} value={menu.name}>{menu.name}</option>)}
             </select>
         )
@@ -126,7 +139,8 @@ function EditMenuItem({ item }) {
             </Grid>
     
             <Grid item>
-                <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label>
+                {item.menu ? <label>Menu: {!menuEditing ? item.menu.name : menuDropDown()} </label> : <label>Menu: {!menuEditing ? 'Unassigned' : menuDropDown()} </label>}
+                
                 {!menuEditing ? <Button onClick={handleEditClick} variant='contained' color="primary" size="small">Edit</Button> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit} variant='contained' color="primary" size="small">Reassign</Button><Button onClick={handleMenuCancel} variant='contained' color="primary" size="small">Cancel</Button></div>}
             </Grid>
 

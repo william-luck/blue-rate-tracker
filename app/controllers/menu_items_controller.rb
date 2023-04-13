@@ -8,7 +8,13 @@ class MenuItemsController < ApplicationController
     def create
 
         created_menu_item = MenuItem.new(menu_item_params)
-        created_menu_item.menu_id = Menu.find_by(name: params[:menu]).id
+        menu = Menu.find_by(name: params[:menu])
+
+        if menu
+            created_menu_item.menu_id = menu.id
+        end
+
+        # created_menu_item.menu_id = Menu.find_by(name: params[:menu]).id
         created_menu_item.price_ratio = 3.0
         created_menu_item.save! 
 
