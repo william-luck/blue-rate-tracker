@@ -1,20 +1,9 @@
-import { Route, Switch} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-
-
-import MenusContainer from './MenusContainer';
-import NavBar from './NavBar';
-import Login from './Login';
-import EditProducts from './EditProducts';
-import AddMenuItem from './AddMenuItem';
-
-import { checkLogin, removeSession } from './usersSlice';
+import Login from './components/Login';
+import { checkLogin, removeSession } from './reducers/usersSlice';
 import { useState } from 'react';
-import BlueRateValue from './BlueRateValue';
-import EditMenuItems from './EditMenuItems';
-import EditMenus from './EditMenus';
-import Dashboard from './Dashboard/Dashboard';
+import Dashboard from './components/Dashboard';
 
 
 function App() {
@@ -40,32 +29,6 @@ function App() {
   
   return (
     <>  
-    {/* <NavBar />
-    <button onClick={handleLogout}>Logout</button>
-    { blue ? <BlueRateValue blue={blue}/> : null }
-    <Switch>
-      
-      <Route path='/edit-menus'>
-        <EditMenus/>
-      </Route>
-
-      <Route path='/edit-products'>
-        <EditProducts />
-      </Route>
-
-      <Route path='/add-menu-item'>
-        <AddMenuItem />
-      </Route>
-
-      <Route path='/edit-menu-items'>
-        <EditMenuItems />
-      </Route> */}
-
-      {/* <Route path='/'>
-        <MenusContainer/>
-      </Route>
-
-    </Switch> */}
     <Dashboard/>
     </>
   );

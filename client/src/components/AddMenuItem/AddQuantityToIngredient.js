@@ -1,7 +1,6 @@
 import { TextField } from "@material-ui/core";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { assignQuantity } from "./ingredientsSlice";
+import { useDispatch } from "react-redux";
+import { assignQuantity } from "../../reducers/ingredientsSlice";
 
 
 function AddQuantityToIngredient({ ingredient }) {

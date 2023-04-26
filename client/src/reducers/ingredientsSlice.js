@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-// import { addMenuItem } from "./menuItemsSlice"
-
 
 export const ingredientEdited = createAsyncThunk('ingredients/ingredientEdited', async(ingredient) => {
 
@@ -47,12 +45,6 @@ const ingredientsSlice = createSlice({
         }
     }, 
     extraReducers: {
-        // [addMenuItem.fulfilled] (state) {
-        //     debugger
-        //     state.entities = ''
-        //     state.menu = ''
-        //     state.name = ''
-        // }
         }
     }
 )

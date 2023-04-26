@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import menusReducer from './menusSlice'
-import usersReducer from './usersSlice'
-import productsReducer from './productsSlice'
-import ingredientsReducer from './ingredientsSlice'
-import menuItemsReducer from './menuItemsSlice'
+import menusReducer from './reducers/menusSlice'
+import usersReducer from './reducers/usersSlice'
+import productsReducer from './reducers/productsSlice'
+import ingredientsReducer from './reducers/ingredientsSlice'
+import menuItemsReducer from './reducers/menuItemsSlice'
 
 
 

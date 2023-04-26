@@ -4,9 +4,8 @@ import AddIngredientsChecklist from "./AddIngredientsChecklist";
 import AddMenuToMenuItem from "./AddMenuToMenuItem";
 import AddQuantities from "./AddQuantities";
 
-import { assignName, clearPendingData } from "./ingredientsSlice";
-import { addMenuItem } from "./menuItemsSlice";
-import AddProduct from "./AddProduct";
+import { assignName, clearPendingData } from "../../reducers/ingredientsSlice";
+import { addMenuItem } from "../../reducers/menuItemsSlice";
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';

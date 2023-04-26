@@ -1,6 +1,6 @@
 import { MenuItem, TextField, Typography } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { assignMenu } from "./ingredientsSlice";
+import { assignMenu } from "../../reducers/ingredientsSlice";
 
 function AddMenuToMenuItem() {
 

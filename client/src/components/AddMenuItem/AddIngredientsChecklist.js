@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, Typography } from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import { useSelector, useDispatch } from "react-redux";
 
-import { ingredientAdded, ingredientRemoved } from "./ingredientsSlice";
+import { ingredientAdded, ingredientRemoved } from "../../reducers/ingredientsSlice";
 
 
 function AddIngredientsChecklist() {

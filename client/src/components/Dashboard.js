@@ -11,13 +11,13 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItems';
-import Home from '../Home';
+import { mainListItems } from './Home/listItems';
+import Home from './Home/Home';
 import { Switch, Route, useLocation } from 'react-router-dom';
-import EditProducts from '../EditProducts';
-import EditMenuItems from '../EditMenuItems';
-import AddMenuItem from '../AddMenuItem';
-import EditMenus from '../EditMenus';
+import EditProducts from './EditProducts/EditProducts';
+import EditMenuItems from './EditMenuItems/EditMenuItems';
+import AddMenuItem from './AddMenuItem/AddMenuItem';
+import EditMenus from './EditMenus/EditMenus';
 
 
 

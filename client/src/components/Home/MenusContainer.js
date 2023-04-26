@@ -6,8 +6,8 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ViewList from "@material-ui/icons/ViewList"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMenus } from "./menusSlice";
-import { menuSelected } from './menusSlice';
+import { fetchMenus } from "../../reducers/menusSlice";
+import { menuSelected } from '../../reducers/menusSlice';
 
 
 

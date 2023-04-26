@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editMenuName } from "./menusSlice";
+import { editMenuName } from "../../reducers/menusSlice";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core"
 

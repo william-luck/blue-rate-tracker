@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import EditMenu from "./EditMenu";
 import { useState } from "react";
-import { addMenu, deleteMenu } from "./menusSlice";
+import { addMenu, deleteMenu } from "../../reducers/menusSlice";
 import { useEffect } from "react";
-import Title from "./Dashboard/Title";
+import Title from "../Title";
 import { TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";

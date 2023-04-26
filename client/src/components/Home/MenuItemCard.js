@@ -13,11 +13,6 @@ const useStyles = makeStyles((theme) => ({
 
 function MenuItemCard({ item }) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   function calculatePrice(menu_item) {
     let sub_total = menu_item.ingredients.reduce((accum, curr) => accum + curr.price_of_ingredient, 0)

@@ -1,7 +1,7 @@
-import { Container, Divider, makeStyles, TextField } from "@material-ui/core";
+import { Divider, makeStyles, TextField } from "@material-ui/core";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProduct } from "./productsSlice";
+import { addProduct } from "../../reducers/productsSlice";
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
 

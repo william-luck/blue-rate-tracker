@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Title from "./Dashboard/Title";
+import Title from "../Title";
 import MenusContainer from "./MenusContainer";
 import BlueRateValue from "./BlueRateValue";
 import Menu from "./Menu";

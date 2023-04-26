@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addSession } from "./usersSlice";
+import { addSession } from "../reducers/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 

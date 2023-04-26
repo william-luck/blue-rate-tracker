@@ -5,14 +5,8 @@ import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Title from "./Dashboard/Title";
-import MenusContainer from "./MenusContainer";
-import BlueRateValue from "./BlueRateValue";
-import Menu from "./Menu";
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
-import { fetchProducts } from "./productsSlice";
+import Title from "../Title";
+import { fetchProducts } from "../../reducers/productsSlice";
 import Product from './Product'
 import AddProduct from "./AddProduct";
 import List from '@material-ui/core/List';
@@ -66,9 +60,6 @@ function EditProducts() {
                 <Grid item xs={12} md={6} lg={9}>
                 <Paper className={fixedHeightPaper}>
                     <Title>Products</Title>
-                    {/* <ul>
-                        {products?.map(product => <Product key={product.id} product={product}/>)}
-                    </ul> */}
                     <List>
                         {products?.map(product => {
                             return (

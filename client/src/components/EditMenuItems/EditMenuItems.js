@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import EditMenuItem from "./EditMenuItem";
-import { fetchMenuItems, ingredientSelected } from "./menuItemsSlice";
+import { fetchMenuItems, ingredientSelected } from "../../reducers/menuItemsSlice";
 import { Divider, Menu, MenuItem } from "@material-ui/core";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -64,7 +64,7 @@ function EditMenuItems() {
             <Grid item xs={12} >
             <Paper>
                 <Container className={classes.container}>
-            <label>Select a menu Item to edit: </label>
+                <label>Select a menu Item to edit: </label>
 
                 <select id='menuItem' name='menuItem' onChange={handleChange}>
                     <option value=''>None</option>

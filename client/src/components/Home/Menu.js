@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@material-ui/core"
 import { useSelector } from "react-redux"
 import MenuItemCard from "./MenuItemCard"
-import Title from "./Dashboard/Title"
+import Title from "../Title"
 import { Grid } from "@material-ui/core"
 
 function Menu() {

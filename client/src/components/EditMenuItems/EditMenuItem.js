@@ -3,12 +3,12 @@ import EditIngredient from "./EditIngredient";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { editItem } from "./menuItemsSlice";
+import { editItem, deleteItem } from "../../reducers/menuItemsSlice";
 import { Button, Divider, TextField } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import Title from "./Dashboard/Title";
+import Title from "../Title";
 import Container from "@material-ui/core/Container";
-import { deleteItem } from "./menuItemsSlice";
+
 
 
 
@@ -39,7 +39,6 @@ function EditMenuItem({ item }) {
         setMenuEditing(false)
         setNameEditing(false)
         setPriceEditing(false)
-        // setSelectedMenu(item.menu.name)
         setMenuItemName(item.name)
 
         if (item.menu) {
@@ -160,7 +159,6 @@ function EditMenuItem({ item }) {
         <Container>
         {item.ingredients?.map(ingredient => {
             return (
-                
                     <EditIngredient ingredient={ingredient} key={ingredient.id}/>
                 
         )})}

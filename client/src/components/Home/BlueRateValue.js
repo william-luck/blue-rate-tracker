@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Title from './Dashboard/Title';
+import Title from '../Title';
 import { useEffect, useState } from 'react';
 import { Divider } from '@material-ui/core';
 
