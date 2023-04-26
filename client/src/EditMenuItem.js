@@ -164,6 +164,11 @@ function EditMenuItem({ item }) {
                     <EditIngredient ingredient={ingredient} key={ingredient.id}/>
                 
         )})}
+
+        {/* Add ingredients to Menu Item */}
+        <Title>Add ingredients?</Title>
+        <Button>Add</Button>
+
         </Container>
 
             <Grid container justifyContent='center' direction="row">

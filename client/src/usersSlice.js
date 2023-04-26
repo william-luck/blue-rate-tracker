@@ -31,8 +31,7 @@ const sessionsSlice = createSlice({
         errors: []
     },
     reducers: {
-        // Blank for now
-        // Add, logout? Async?
+        
     }, 
     extraReducers: {
         [addSession.fulfilled] (state, action) {

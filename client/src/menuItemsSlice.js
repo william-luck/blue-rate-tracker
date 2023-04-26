@@ -76,6 +76,7 @@ const menuItemsSlice = createSlice({
 
             // For updating title in dropdown menu and persisting changes across menu item selection
             state.entities.find(item => item.id === action.payload.id).name = action.payload.name
+
         },
         [deleteItem.fulfilled] (state, action) {
             // Need to find index of deleted item, splice that from array (mutable)
