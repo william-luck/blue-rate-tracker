@@ -15,7 +15,9 @@ export const addSession = createAsyncThunk('sessions/addSession', async (formDat
 })
 
 export const removeSession = createAsyncThunk('sessions/removeSession', async () => {
-    return fetch('/logout', {method: 'DELETE'})
+    const response = await fetch('/logout', {method: 'DELETE'})
+
+    return response 
 })
 
 export const checkLogin = createAsyncThunk('users/fetchUser', async() => {

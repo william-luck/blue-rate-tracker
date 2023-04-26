@@ -18,6 +18,9 @@ import EditProducts from './EditProducts/EditProducts';
 import EditMenuItems from './EditMenuItems/EditMenuItems';
 import AddMenuItem from './AddMenuItem/AddMenuItem';
 import EditMenus from './EditMenus/EditMenus';
+import { Button } from '@material-ui/core';
+import { removeSession } from '../reducers/usersSlice'
+import { useDispatch } from "react-redux";
 
 
 
@@ -106,6 +109,7 @@ export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const location = useLocation()
+  const dispatch = useDispatch()
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -115,6 +119,13 @@ export default function Dashboard() {
     setOpen(false);
   };
 
+  function handleLogout(){
+    console.log('not activating')
+    dispatch(removeSession())
+  }
+
+  
+
   function appTitle() {
     if (location.pathname === '/') {
         return 'Home'
@@ -123,6 +134,7 @@ export default function Dashboard() {
         return location.pathname.replace(/-/g, ' ').substring(1).split(' ').map(word => word[0].toUpperCase() + word.substring(1)).join(' ')
     }
   }
+
   
 
   return (
@@ -145,8 +157,9 @@ export default function Dashboard() {
           </Typography>
 
           <IconButton color="inherit">
-
           </IconButton>
+
+          <Button color='secondary' variant='contained' size='small' onClick={handleLogout}>Logout</Button>
         </Toolbar>
       </AppBar>
 
