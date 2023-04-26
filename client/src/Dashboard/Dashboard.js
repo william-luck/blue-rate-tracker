@@ -3,41 +3,21 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Orders from './Orders';
-import Title from './Title';
-import { Button } from '@material-ui/core';
-import MenusContainer from '../MenusContainer';
-import BlueRateValue from '../BlueRateValue';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Menu from '../Menu';
 import Home from '../Home';
 import { Switch, Route, useLocation } from 'react-router-dom';
 import EditProducts from '../EditProducts';
 import EditMenuItems from '../EditMenuItems';
 import AddMenuItem from '../AddMenuItem';
 import EditMenus from '../EditMenus';
-
-
-
-// This is now the App page, should alwyas display the drawer. The dashbord itself can be refactored from main, the drawer into a separate component
-
 
 
 
@@ -143,13 +123,6 @@ export default function Dashboard() {
         return location.pathname.replace(/-/g, ' ').substring(1).split(' ').map(word => word[0].toUpperCase() + word.substring(1)).join(' ')
     }
   }
-
-//   useEffect(() => {
-//     setAppTitle(window.location.pathname)
-//   }, [window.location.pathname])
-
-
-
   
 
   return (
@@ -172,10 +145,6 @@ export default function Dashboard() {
           </Typography>
 
           <IconButton color="inherit">
-
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
 
           </IconButton>
         </Toolbar>
