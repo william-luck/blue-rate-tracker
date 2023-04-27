@@ -17,7 +17,8 @@ function EditMenus() {
 
     const menus = useSelector(state => state.menus.entities)
     const user = useSelector(state => state.users.entities[0].id)
-    const errors = useSelector(state => state.menus.nameErrors)
+    const editingErrors = useSelector(state => state.menus.nameErrors)
+    const addingErrors = useSelector(state => state.menus.addingErrors)
 
     const [newMenuName, setNewMenuName] = useState('')
     const [alertShow, setAlertShow] = useState('')
@@ -102,7 +103,7 @@ function EditMenus() {
                         
                         {menus?.map(menu => <EditMenu name={menu.name} id={menu.id} setAlertShow={setAlertShow}/>)} 
 
-                        {errors ? <div>Name can't be saved: {errors}</div> : null}
+                        {editingErrors ? <div>Name can't be saved: {editingErrors}</div> : null}
                         
                         <br></br>
                         <br></br>
@@ -115,6 +116,8 @@ function EditMenus() {
                             <TextField onChange={handleChange} value={newMenuName} label="Add name of new menu" style={{width: '50ch'}}></TextField>
                             <Button onClick={handleSubmit} variant="contained" color="primary" size='small'>Add</Button>
                         </Grid>
+                        <br></br>
+                        {addingErrors ? <div>Can't add menu: {addingErrors}</div> : null}
                         </div>
                         </div>
                     }

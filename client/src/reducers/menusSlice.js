@@ -44,6 +44,7 @@ const menusSlice = createSlice({
         entities: [],
         selected: '',
         nameErrors: '',
+        addingErrors: '',
         status: 'idle'
     },
     reducers: {
@@ -75,7 +76,16 @@ const menusSlice = createSlice({
            
         },
         [addMenu.fulfilled] (state, action) {
-            state.entities.push(action.payload)
+            state.addingErrors = ''
+
+            debugger
+
+            if (action.payload.errors) {
+                state.addingErrors = action.payload.errors[0]
+            } else {
+                state.entities.push(action.payload)
+            }
+            
         },
         [deleteMenu.fulfilled] (state, action) {
             const index = state.entities.findIndex(menu => menu.id === action.payload.id)
