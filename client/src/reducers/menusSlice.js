@@ -63,8 +63,16 @@ const menusSlice = createSlice({
         },
         [editMenuName.fulfilled](state, action) {
 
-            const menu = state.entities.find(menu => menu.id === action.payload.id)
-            menu.name = action.payload.name
+            state.nameErrors = ''
+
+            if (action.payload.errors) {
+                state.nameErrors = action.payload.errors[0]
+            } else {
+                const menu = state.entities.find(menu => menu.id === action.payload.id)
+                menu.name = action.payload.name
+            }
+
+           
         },
         [addMenu.fulfilled] (state, action) {
             state.entities.push(action.payload)

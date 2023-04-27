@@ -17,6 +17,7 @@ function EditMenus() {
 
     const menus = useSelector(state => state.menus.entities)
     const user = useSelector(state => state.users.entities[0].id)
+    const errors = useSelector(state => state.menus.nameErrors)
 
     const [newMenuName, setNewMenuName] = useState('')
     const [alertShow, setAlertShow] = useState('')
@@ -98,11 +99,12 @@ function EditMenus() {
                         : 
                         <div>
                         <Title>Edit Menu Names: </Title>
+                        
                         {menus?.map(menu => <EditMenu name={menu.name} id={menu.id} setAlertShow={setAlertShow}/>)} 
+
+                        {errors ? <div>Name can't be saved: {errors}</div> : null}
                         
                         <br></br>
-                
-
                         <br></br>
 
                         <Title>Create menu?</Title>
