@@ -44,7 +44,8 @@ const menuItemsSlice = createSlice({
     initialState: {
         entities: [],
         selectedItem: [], 
-        ingredientsErrors: ''
+        ingredientsErrors: '', 
+        nameErrors: ''
     },
     reducers: {
         ingredientSelected(state, action) {
@@ -80,13 +81,22 @@ const menuItemsSlice = createSlice({
             
         },
         [editItem.fulfilled] (state, action) {
-            // For immediately displaying on page
-            state.selectedItem.menu = action.payload.menu
-            state.selectedItem.name = action.payload.name
-            state.selectedItem.price_ratio = action.payload.price_ratio
 
-            // For updating title in dropdown menu and persisting changes across menu item selection
-            state.entities.find(item => item.id === action.payload.id).name = action.payload.name
+            state.nameErrors = ''
+
+            if (action.payload.errors) {
+                state.nameErrors = action.payload.errors
+            } else {
+                // For immediately displaying on page
+                state.selectedItem.menu = action.payload.menu
+                state.selectedItem.name = action.payload.name
+                state.selectedItem.price_ratio = action.payload.price_ratio
+
+                // For updating title in dropdown menu and persisting changes across menu item selection
+                state.entities.find(item => item.id === action.payload.id).name = action.payload.name
+            }
+
+            
 
         },
         [deleteItem.fulfilled] (state, action) {

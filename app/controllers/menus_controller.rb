@@ -1,5 +1,7 @@
 class MenusController < ApplicationController
 
+    rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_data_error
+
     def index
         menus = Menu.all.order('name ASC')
         render json: menus, include: ['menu_items', 'menu_items.ingredients', methods: :find_price_per_quantity]
@@ -13,6 +15,7 @@ class MenusController < ApplicationController
     end
 
     def update
+
         menu = Menu.find(params[:id])
         menu.update!(menu_params)
 
@@ -29,6 +32,10 @@ class MenusController < ApplicationController
     
     def menu_params
         params.permit(:name, :user_id)
+    end
+
+    def render_invalid_data_error(invalid)
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
     
 end

@@ -26,7 +26,8 @@ function EditMenuItem({ item }) {
 
     const menus = useSelector(state => state.menus.entities)
     const products = useSelector(state => state.products.entities)
-    const errors = useSelector(state => state.menuItems.ingredientsErrors)
+    const ingredientErrors = useSelector(state => state.menuItems.ingredientsErrors)
+    const nameErrors = useSelector(state => state.menuItems.nameErrors)
 
     const dispatch = useDispatch()
 
@@ -101,6 +102,7 @@ function EditMenuItem({ item }) {
 
         if (selectedMenu) {
             const menuId = menus.find(menu => menu.name === selectedMenu).id
+
             dispatch(editItem({
                 item_id: item.id,
                 name: menuItemName,
@@ -168,6 +170,8 @@ function EditMenuItem({ item }) {
             <Grid item>
                 {!nameEditing ? <label> Name: {menuItemName} </label> : <TextField onChange={handleNameChange} value={menuItemName}/>}
                 {!nameEditing ? <Button onClick={handleNameEditClick} variant='contained' color="primary" size="small">Edit</Button>: <div style={{display:'inline-block'}}>{' '}<Button onClick={handleSubmit} variant='contained' color="primary" size="small">Save</Button>{' '}<Button onClick={handleNameCancel} variant='contained' color="primary" size="small">Cancel</Button></div>}
+                <br></br>
+                {nameErrors ? <div>Error: {nameErrors[0]}</div> : null}
             </Grid>
     
             <Grid item>
@@ -196,7 +200,7 @@ function EditMenuItem({ item }) {
                 
         )})}
 
-        {errors ? <div>Ingredient could not be saved: {errors}</div> : null}
+        {ingredientErrors ? <div>Ingredient could not be saved: {ingredientErrors}</div> : null}
 
         {/* Add ingredients to Menu Item */}
         <Title>Add ingredients?</Title>

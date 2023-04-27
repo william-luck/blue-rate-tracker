@@ -1,5 +1,7 @@
 class MenuItemsController < ApplicationController
 
+    rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_data_error
+
     def index
         menu_items = MenuItem.all.order('name ASC')
         render json: menu_items, status: :ok
@@ -59,6 +61,10 @@ class MenuItemsController < ApplicationController
 
     def ingredient_params(ingredient)
         ingredient.permit(:product_id, :quantity)
+    end
+
+    def render_invalid_data_error(invalid)
+        render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
 
 end

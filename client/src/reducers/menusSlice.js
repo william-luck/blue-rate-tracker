@@ -43,6 +43,7 @@ const menusSlice = createSlice({
     initialState: {
         entities: [],
         selected: '',
+        nameErrors: '',
         status: 'idle'
     },
     reducers: {
@@ -61,6 +62,7 @@ const menusSlice = createSlice({
             state.status = 'idle'
         },
         [editMenuName.fulfilled](state, action) {
+
             const menu = state.entities.find(menu => menu.id === action.payload.id)
             menu.name = action.payload.name
         },
