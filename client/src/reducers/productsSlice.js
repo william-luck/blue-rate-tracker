@@ -19,44 +19,53 @@ export const editProduct = createAsyncThunk('products/editProduct', async(produc
         // .then(data => data)
 })
 
-export const addProduct = createAsyncThunk('products/addProduct', async(product) => {
-    return fetch(`/products`, {
+export const addProduct = createAsyncThunk('products/addProduct', async(product, { rejectWithValue }) => {
+    const response = await fetch(`/products`, {
         method: 'POST',
         headers: {
             'Content-Type' : 'application/json'
         },
         body: JSON.stringify(product)
     })
-        .then(response => response.json())
-        // .then(data => data)
+
+    return response.json()
 })
 
 const productsSlice = createSlice({
     name: 'products',
     initialState: {
-        entities: []
+        entities: [], 
+        addingErrors: [],
+        editingErrors: []
     },
     reducers: {
-        // Blank for now
-        // Add, logout? Async?
+        
     }, 
     extraReducers: {
         [fetchProducts.fulfilled] (state, action) {
             state.entities = action.payload
         },
         [editProduct.fulfilled] (state, action) {
-            // Using .meta.arg.in case the action.payload sends back error
-            const product = state.entities.find(product => product.id === action.meta.arg.id)
-            if (!action.payload.id) {
-                product.error = action.payload.errors
+            state.editingErrors = []
+            if (action.payload.errors) {
+                state.editingErrors.push(action.payload)
             } else {
-                product.name = action.payload.name
+                const product = state.entities.find(prod => prod.id == action.payload.id)
+
                 product.price = action.payload.price
-                product.error = null
+                product.name = action.payload.name
             }
+
         },
         [addProduct.fulfilled] (state, action) {
-            state.entities.push(action.payload)
+
+            if (action.payload.errors) {
+                state.addingErrors = []
+                state.addingErrors.push(action.payload)
+            } else {
+                state.entities.push(action.payload)
+            }
+
         }
     }
 })

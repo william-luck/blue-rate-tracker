@@ -80,7 +80,7 @@ function EditProducts() {
                 </Paper>
                 </Grid>
 
-                {/* Selected Menu Detail} */}
+                {/* Selected Product Detail} */}
                 <Grid item xs={12}>
                 <Paper className={classes.paper}>
                     {selectedListItem ? <Product product={selectedListItem}/> : 'Select a product from the above list to edit the product'}
@@ -92,11 +92,7 @@ function EditProducts() {
 
         </Container>
 
-        {/* <AddProduct />
-        <h1>Edit Products</h1>
-        <ul>
-            {products?.map(product => <Product key={product.id} product={product}/>)}
-        </ul> */}
+        
         </>
     )
 }

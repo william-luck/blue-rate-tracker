@@ -23,7 +23,6 @@ class ProductsController < ApplicationController
     end
 
 
-
     private
 
     def product_params

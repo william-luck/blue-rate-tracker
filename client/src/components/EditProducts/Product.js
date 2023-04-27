@@ -12,6 +12,7 @@ function Product({ product }) {
 
     const [formData, setFormData] = useState('')
     const dispatch = useDispatch()
+    const errors = useSelector(state => state.products.editingErrors)
 
     useEffect(() => {
         setFormData({
@@ -20,8 +21,6 @@ function Product({ product }) {
             id: product.id
         })
     }, [product, dispatch])
-
-    const [error, setError] = useState('')
 
 
     function handleChange(e) {
@@ -62,7 +61,7 @@ function Product({ product }) {
                 <Grid item>
                 <Button variant="contained" color="primary" type="submit">Save</Button>
                 </Grid>
-                {product.error ? 'Error: ' + product.error : null}
+                {errors.length > 0 ? 'Error: ' + errors[0].errors[0] : null}
             </Grid>
         
         </form>
