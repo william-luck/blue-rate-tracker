@@ -58,7 +58,7 @@ const productsSlice = createSlice({
 
         },
         [addProduct.fulfilled] (state, action) {
-
+            state.addingErrors = []
             if (action.payload.errors) {
                 state.addingErrors = []
                 state.addingErrors.push(action.payload)

@@ -1,6 +1,6 @@
 import { Divider, makeStyles, TextField } from "@material-ui/core";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../reducers/productsSlice";
 import Button from "@material-ui/core/Button";
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 function AddProduct() {
 
     const dispatch = useDispatch()
+    const errors = useSelector(state => state.products.addingErrors)
 
     const [formData, setFormData] = useState({
         name: '',
@@ -54,6 +55,16 @@ function AddProduct() {
                 <TextField label="Price" name="price" value={formData.price} onChange={handleChange} helperText='per kilogram / liter' />
                 </Grid>
                 <Button variant="contained" color="primary" type="submit">Save</Button>
+                <br></br>
+                
+                {errors.length > 0 ? 
+                <ul>
+                    Unable to add item to database: 
+                    <br></br>
+                {errors[0].errors.map(error => <li>{error}</li>)}
+                </ul>
+                : null}
+                
             </Grid>
         </form>
         <br></br>
