@@ -8,6 +8,7 @@ import { Button, Divider, TextField } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
 import Title from "../Title";
 import Container from "@material-ui/core/Container";
+import { newIngredient } from '../../reducers/ingredientsSlice'
 
 
 
@@ -20,8 +21,11 @@ function EditMenuItem({ item }) {
     const [selectedMenu, setSelectedMenu] = useState('')
     const [priceEditing, setPriceEditing] = useState(false)
     const [price, setPrice] = useState('')
+    const [selectedIngredient, setSelectedIngredient] = useState('')
+    const [ingredientQuantity, setIngredientQuantity] = useState('')
 
     const menus = useSelector(state => state.menus.entities)
+    const products = useSelector(state => state.products.entities)
 
     const dispatch = useDispatch()
 
@@ -117,6 +121,28 @@ function EditMenuItem({ item }) {
         dispatch(deleteItem(item.id))
     }
 
+    function handleIngredientChange(e) {
+        const product = products.find(product => product.id == e.target.value)
+        setSelectedIngredient(product)
+    }
+
+    function handleIngredientQuantityChange(e) {
+        setIngredientQuantity(e.target.value)
+    }
+
+    function handleIngredientSubmit(e) {
+        e.preventDefault()
+
+        const data = {
+            product_id: selectedIngredient.id,
+            menu_item_id: item.id,
+            quantity: parseFloat(ingredientQuantity/1000)
+        }
+
+
+        dispatch(newIngredient(data))
+    }
+
     function menuDropDown() {
         return(
             <select onChange={handleEditMenu} value={selectedMenu}>
@@ -165,9 +191,24 @@ function EditMenuItem({ item }) {
 
         {/* Add ingredients to Menu Item */}
         <Title>Add ingredients?</Title>
-        <Button>Add</Button>
+        <select id='menuItem' name='menuItem' onChange={handleIngredientChange}>
+            <option value=''>None</option>
+            {products?.map(product => {
+                return <option key={product.id} value={product.id}>{product.name}</option>
+            })}
+        </select>
+
+        {selectedIngredient ? 
+        <span>
+            <TextField onChange={handleIngredientQuantityChange} value={ingredientQuantity} helperText={'Enter grams / mililiters'} style={{paddingLeft: '30px', paddingRight: '20px'}}/>
+            <Button variant="contained" size="small" color="primary" onClick={handleIngredientSubmit}>Add</Button>
+        </span>
+        : null}
+        
 
         </Container>
+        <br></br>
+        <br></br>
 
             <Grid container justifyContent='center' direction="row">
                 <Button variant="contained" color="secondary" size="large" onClick={handleDelete}>Delete Menu Item</Button>

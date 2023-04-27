@@ -13,4 +13,15 @@ class IngredientsController < ApplicationController
         render json: ingredient, status: :accepted
     end
 
+    def create
+        ingredient = Ingredient.create!(ingredient_params)
+        render json: ingredient, status: :accepted
+    end
+
+    private 
+
+    def ingredient_params
+        params.permit(:product_id, :menu_item_id, :quantity)
+    end
+
 end

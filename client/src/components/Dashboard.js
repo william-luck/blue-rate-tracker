@@ -120,11 +120,8 @@ export default function Dashboard() {
   };
 
   function handleLogout(){
-    console.log('not activating')
     dispatch(removeSession())
   }
-
-  
 
   function appTitle() {
     if (location.pathname === '/') {

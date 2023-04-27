@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { ingredientEdited } from "./ingredientsSlice"
+import { newIngredient } from "./ingredientsSlice"
 
 export const fetchMenuItems = createAsyncThunk('menuItems/fetchMenuItems', async () => {
     return fetch('/menu_items')
@@ -83,6 +84,18 @@ const menuItemsSlice = createSlice({
             const index = state.entities.findIndex(menuItem => menuItem.id === action.payload.id)
             state.entities.splice(index, 1)
             state.selectedItem = []
+        },
+        [newIngredient.fulfilled] (state, action) {
+
+            // On selected item, immediate update
+           state.selectedItem.ingredients.push(action.payload);
+
+        //    Edge case of updating quantity after adding 
+            const menuItem = state.entities.find(item => item.id == action.payload.menu_item.id);
+            menuItem.ingredients.push(action.payload);
+
+
+
         }
     
     }
