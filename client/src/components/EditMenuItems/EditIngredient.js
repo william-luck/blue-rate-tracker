@@ -12,6 +12,7 @@ function EditIngredient({ ingredient }) {
     const [quantity, setQuantity] = useState(calculateQuantity())
 
     const dispatch = useDispatch()
+    
 
     function handleClick(e) {
         e.preventDefault()

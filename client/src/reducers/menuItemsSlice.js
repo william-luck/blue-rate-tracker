@@ -43,7 +43,8 @@ const menuItemsSlice = createSlice({
     name: 'menu_items',
     initialState: {
         entities: [],
-        selectedItem: []
+        selectedItem: [], 
+        ingredientsErrors: ''
     },
     reducers: {
         ingredientSelected(state, action) {
@@ -58,16 +59,25 @@ const menuItemsSlice = createSlice({
             state.entities = action.payload
         }, 
         [ingredientEdited.fulfilled] (state, action) {
-            // state.entities edit (for persisting change when different menu item is selected)
-            const menuItem = state.entities.find(item => item.id === action.payload.menu_item_id)
-            let menuItemIngredient = menuItem.ingredients.find(ingred => ingred.id === action.payload.id)
-            menuItemIngredient.quantity = action.payload.quantity
-            menuItemIngredient.price_of_ingredient = action.payload.quantity * action.payload.product.price
 
-            // state.selectedItem edit (for displaying immediatley on page)
-            let ingredient = state.selectedItem.ingredients.find(ingred => ingred.id === action.payload.id)
-            ingredient.quantity = action.payload.quantity
-            ingredient.price_of_ingredient = action.payload.quantity * action.payload.product.price
+            state.ingredientsErrors = ''
+
+            if (action.payload.errors) { 
+                state.ingredientsErrors = action.payload.errors
+            } else {
+                // state.entities edit (for persisting change when different menu item is selected)
+                const menuItem = state.entities.find(item => item.id === action.payload.menu_item_id)
+                let menuItemIngredient = menuItem.ingredients.find(ingred => ingred.id === action.payload.id)
+                menuItemIngredient.quantity = action.payload.quantity
+                menuItemIngredient.price_of_ingredient = action.payload.quantity * action.payload.product.price
+
+                // state.selectedItem edit (for displaying immediatley on page)
+                let ingredient = state.selectedItem.ingredients.find(ingred => ingred.id === action.payload.id)
+                ingredient.quantity = action.payload.quantity
+                ingredient.price_of_ingredient = action.payload.quantity * action.payload.product.price
+            }
+
+            
         },
         [editItem.fulfilled] (state, action) {
             // For immediately displaying on page

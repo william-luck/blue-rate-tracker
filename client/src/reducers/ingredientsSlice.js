@@ -10,7 +10,6 @@ export const ingredientEdited = createAsyncThunk('ingredients/ingredientEdited',
         body: JSON.stringify(ingredient)
     })
         .then(response => response.json())
-        .then(data => data)
 })
 
 export const newIngredient = createAsyncThunk("ingredients/newIngredient", async(ingredient) => {

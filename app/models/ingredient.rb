@@ -1,5 +1,8 @@
 class Ingredient < ApplicationRecord
 
+    validates :quantity, presence: true
+    validates :quantity, numericality: true
+    
     belongs_to :menu_item
     belongs_to :product
 

@@ -26,6 +26,7 @@ function EditMenuItem({ item }) {
 
     const menus = useSelector(state => state.menus.entities)
     const products = useSelector(state => state.products.entities)
+    const errors = useSelector(state => state.menuItems.ingredientsErrors)
 
     const dispatch = useDispatch()
 
@@ -194,6 +195,8 @@ function EditMenuItem({ item }) {
                     <EditIngredient ingredient={ingredient} key={ingredient.id}/>
                 
         )})}
+
+        {errors ? <div>Ingredient could not be saved: {errors}</div> : null}
 
         {/* Add ingredients to Menu Item */}
         <Title>Add ingredients?</Title>
