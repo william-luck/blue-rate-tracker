@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ingredientEdited } from "../../reducers/ingredientsSlice";
 import Button from "@material-ui/core/Button";
+import { deleteIngredient } from "../../reducers/ingredientsSlice";
 
 
 function EditIngredient({ ingredient }) {
@@ -27,6 +28,11 @@ function EditIngredient({ ingredient }) {
         setEditing(false)
     }
 
+    function handleDelete() {
+        dispatch(deleteIngredient(ingredient.id))
+
+    }
+
     function calculateQuantity() {
         if (ingredient.product_name === 'egg') {
             return parseInt(ingredient.quantity / .08333)
@@ -39,6 +45,8 @@ function EditIngredient({ ingredient }) {
         <>
         <form onSubmit={e => handleSubmit(e)} >
         <div>
+            {!editing ? <Button onClick={handleDelete} variant='contained' color="secondary" size="small">Delete</Button>: null}
+            {' '}
             {!editing ? <Button onClick={e => handleClick(e)} variant='contained' color="primary" size="small">Edit</Button> : <div style={{display:'inline-block', paddingRight: '10px'}}><Button type="submit" id="submit" variant='contained' color="primary" size="small">Save</Button>{' '}<Button onClick={() => setEditing(false)} variant='contained' color="primary" size="small">Cancel</Button></div> }    
             {!editing ? <label> {ingredient.product_name}: {calculateQuantity()}</label> : <TextField helperText={ingredient.product_name} value={quantity} onChange={handleChange}/>} 
             {ingredient.product_name === 'egg' ? ' eggs' : ' grams / mililiters'} {' '}

@@ -25,6 +25,13 @@ export const newIngredient = createAsyncThunk("ingredients/newIngredient", async
         .then(response => response.json())
 })
 
+export const deleteIngredient = createAsyncThunk("ingredients/deleteIngredient", async(id) => {
+    return fetch(`/ingredients/${id}`, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+})
+
 const ingredientsSlice = createSlice({
     name: 'ingredients',
     initialState: {
@@ -57,7 +64,7 @@ const ingredientsSlice = createSlice({
         }
     }, 
     extraReducers: {
-       
+
         }
     }
 )

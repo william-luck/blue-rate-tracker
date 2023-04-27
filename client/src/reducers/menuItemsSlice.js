@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { ingredientEdited } from "./ingredientsSlice"
+import { deleteIngredient, ingredientEdited } from "./ingredientsSlice"
 import { newIngredient } from "./ingredientsSlice"
 
 export const fetchMenuItems = createAsyncThunk('menuItems/fetchMenuItems', async () => {
@@ -93,9 +93,13 @@ const menuItemsSlice = createSlice({
         //    Edge case of updating quantity after adding 
             const menuItem = state.entities.find(item => item.id == action.payload.menu_item.id);
             menuItem.ingredients.push(action.payload);
+        },
+        [deleteIngredient.fulfilled] (state, action) {
 
-
-
+            // Immediate update
+            const index = state.selectedItem.ingredients.findIndex(ingred => ingred.id == action.payload.id)
+            state.selectedItem.ingredients.splice(index, 1)
+            
         }
     
     }

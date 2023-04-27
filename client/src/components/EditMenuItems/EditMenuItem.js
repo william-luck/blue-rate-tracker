@@ -139,9 +139,15 @@ function EditMenuItem({ item }) {
             quantity: parseFloat(ingredientQuantity/1000)
         }
 
-
         dispatch(newIngredient(data))
+
+        // Clears form data
+        setSelectedIngredient('')
+        setIngredientQuantity('')
+
     }
+
+
 
     function menuDropDown() {
         return(

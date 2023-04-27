@@ -18,6 +18,13 @@ class IngredientsController < ApplicationController
         render json: ingredient, status: :accepted
     end
 
+    def destroy
+        ingredient = Ingredient.find(params[:id])
+        ingredient.destroy
+
+        render json: ingredient, status: :accepted
+    end
+
     private 
 
     def ingredient_params
