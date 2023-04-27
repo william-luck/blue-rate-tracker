@@ -45,7 +45,8 @@ const menuItemsSlice = createSlice({
         entities: [],
         selectedItem: [], 
         ingredientsErrors: '', 
-        nameErrors: ''
+        nameErrors: '',
+        priceErrors: ''
     },
     reducers: {
         ingredientSelected(state, action) {
@@ -83,9 +84,16 @@ const menuItemsSlice = createSlice({
         [editItem.fulfilled] (state, action) {
 
             state.nameErrors = ''
+            state.priceErrors = ''
 
             if (action.payload.errors) {
-                state.nameErrors = action.payload.errors
+
+                if (action.payload.errors[0].includes('ratio')) {
+                    state.priceErrors = action.payload.errors[0]
+                } else {
+                    state.nameErrors = action.payload.errors[0]
+                }
+
             } else {
                 // For immediately displaying on page
                 state.selectedItem.menu = action.payload.menu

@@ -28,6 +28,7 @@ function EditMenuItem({ item }) {
     const products = useSelector(state => state.products.entities)
     const ingredientErrors = useSelector(state => state.menuItems.ingredientsErrors)
     const nameErrors = useSelector(state => state.menuItems.nameErrors)
+    const priceErrors = useSelector(state => state.menuItems.priceErrors)
 
     const dispatch = useDispatch()
 
@@ -94,13 +95,21 @@ function EditMenuItem({ item }) {
         setPrice(calculatePrice(item))
     }
 
+    function calculatePriceRatio(stripped, subtotal) {
+        if (!stripped) {
+            return ''
+        } else {
+            return stripped / subtotal
+        }
+    }
+
     function handleSubmit(e) {
         e.preventDefault()
 
         let stripped_price = price.replace(',', '')
 
         let subTotal = item.ingredients.reduce((accum, curr) => accum + curr.price_of_ingredient, 0)
-        let priceRatio = stripped_price / subTotal
+        let priceRatio = calculatePriceRatio(stripped_price, subTotal)
 
         if (selectedMenu) {
             const menuId = menus.find(menu => menu.name === selectedMenu).id
@@ -185,6 +194,8 @@ function EditMenuItem({ item }) {
             <Grid item>
                 <label>Price {!priceEditing ? price : <TextField value={price} onChange={handlePriceChange}/>} </label>
                 {!priceEditing? <Button onClick={handlePriceEditClick} variant='contained' color="primary" size="small">Edit</Button> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit} variant='contained' color="primary" size="small">Override</Button>{' '}<Button onClick={handlePriceCancel} variant='contained' color="primary" size="small">Cancel</Button></div>}
+                <br></br>
+                {priceErrors ? <div>Error: {priceErrors.replace('ratio', '')}</div> : null}
             </Grid>
             
         </Grid>
