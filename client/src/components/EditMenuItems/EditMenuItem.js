@@ -200,7 +200,7 @@ function EditMenuItem({ item }) {
         <select id='menuItem' name='menuItem' onChange={handleIngredientChange}>
             <option value=''>None</option>
             {products?.map(product => {
-                return <option key={product.id} value={product.id}>{product.name}</option>
+                return <option key={product.id} value={product.id} selected={selectedIngredient && selectedIngredient.id === product.id ? true : false}>{product.name}</option>
             })}
         </select>
 
