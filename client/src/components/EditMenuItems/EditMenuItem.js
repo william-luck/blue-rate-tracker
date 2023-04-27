@@ -97,8 +97,10 @@ function EditMenuItem({ item }) {
     function handleSubmit(e) {
         e.preventDefault()
 
+        let stripped_price = price.replace(',', '')
+
         let subTotal = item.ingredients.reduce((accum, curr) => accum + curr.price_of_ingredient, 0)
-        let priceRatio = price / subTotal
+        let priceRatio = stripped_price / subTotal
 
         if (selectedMenu) {
             const menuId = menus.find(menu => menu.name === selectedMenu).id
