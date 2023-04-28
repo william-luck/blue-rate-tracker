@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import EditMenu from "./EditMenu";
 import { useState } from "react";
-import { addMenu, deleteMenu } from "../../reducers/menusSlice";
+import { addMenu, deleteMenu, fetchMenus } from "../../reducers/menusSlice";
 import { useEffect } from "react";
 import Title from "../Title";
 import { TextField } from "@material-ui/core";
@@ -24,6 +24,12 @@ function EditMenus() {
     const [alertShow, setAlertShow] = useState('')
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!menus.length > 0) {
+            dispatch(fetchMenus())
+        }
+    }, [])
     
 
     function handleChange(e) {
