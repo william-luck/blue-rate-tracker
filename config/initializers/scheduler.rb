@@ -4,10 +4,10 @@ require 'net/http'
 require 'json'
 
 
-scheduler = Rufus::Scheduler.singleton
+scheduler = Rufus::Scheduler.new
 
 # Every day at 9:00 AM UTC (6:00 AM Argentina Standard Time)
-scheduler.cron '00 09 * * *' do
+scheduler.cron '00 09 * * *' do |job|
 
     # Returns last two days of data for blue rate
     url = 'https://api.bluelytics.com.ar/v2/evolution.json?days=4'
@@ -29,3 +29,4 @@ scheduler.cron '00 09 * * *' do
     }
 
 end
+

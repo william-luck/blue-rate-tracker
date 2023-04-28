@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@material-ui/core"
 import { useSelector } from "react-redux"
 import MenuItemCard from "./MenuItemCard"
 import Title from "../Title"

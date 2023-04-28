@@ -1,4 +1,4 @@
-import { MenuItem, TextField, Typography } from "@material-ui/core";
+import { MenuItem, TextField } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { assignMenu } from "../../reducers/ingredientsSlice";
 

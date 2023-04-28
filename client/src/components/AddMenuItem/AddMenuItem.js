@@ -98,7 +98,6 @@ function AddMenuItem() {
         }
       }
 
-
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
 

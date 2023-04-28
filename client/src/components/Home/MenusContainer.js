@@ -71,25 +71,3 @@ export default MenusContainer;
 
 
 
-
-// function MenusContainer() {
-
-//     const dispatch = useDispatch()
-//     const menus = useSelector(state => state.menus.entities)
-
-//     // Retrieve menus with nested menu items
-//     useEffect(() => {
-//         dispatch(fetchMenus())
-//       }, [dispatch])
-
-//     return (
-//         <>
-//         {menus?.map(menu => <Menu menu={menu} key={menu.name}/>)}
-//         </>
-//     )
-// }
-
-// export default MenusContainer;
-
-
-

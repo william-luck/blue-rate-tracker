@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
-
-
 export const addSession = createAsyncThunk('sessions/addSession', async (formData) => {
     const response = await fetch('/login', {
         method: 'POST',

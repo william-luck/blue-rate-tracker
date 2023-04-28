@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import EditMenuItem from "./EditMenuItem";
 import { fetchMenuItems, ingredientSelected } from "../../reducers/menuItemsSlice";
-import { Divider, Menu, MenuItem } from "@material-ui/core";
+import { Divider} from "@material-ui/core";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';

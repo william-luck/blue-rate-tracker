@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { deleteIngredient, ingredientEdited } from "./ingredientsSlice"
 import { newIngredient } from "./ingredientsSlice"
-import { useDispatch } from "react-redux"
-import { clearPendingData } from "./ingredientsSlice"
 
 export const fetchMenuItems = createAsyncThunk('menuItems/fetchMenuItems', async () => {
     return fetch('/menu_items')
@@ -114,9 +112,6 @@ const menuItemsSlice = createSlice({
                 // For updating title in dropdown menu and persisting changes across menu item selection
                 state.entities.find(item => item.id === action.payload.id).name = action.payload.name
             }
-
-            
-
         },
         [deleteItem.fulfilled] (state, action) {
             // Need to find index of deleted item, splice that from array (mutable)
@@ -138,7 +133,6 @@ const menuItemsSlice = createSlice({
             // Immediate update
             const index = state.selectedItem.ingredients.findIndex(ingred => ingred.id == action.payload.id)
             state.selectedItem.ingredients.splice(index, 1)
-            
         }
     
     }

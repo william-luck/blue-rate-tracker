@@ -1,6 +1,6 @@
 import { TextField } from "@material-ui/core";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { ingredientEdited } from "../../reducers/ingredientsSlice";
 import Button from "@material-ui/core/Button";
 import { deleteIngredient } from "../../reducers/ingredientsSlice";

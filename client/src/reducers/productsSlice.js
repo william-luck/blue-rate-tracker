@@ -16,7 +16,6 @@ export const editProduct = createAsyncThunk('products/editProduct', async(produc
         body: JSON.stringify(product)
     })
         .then(response => response.json())
-        // .then(data => data)
 })
 
 export const addProduct = createAsyncThunk('products/addProduct', async(product, { rejectWithValue }) => {
@@ -55,7 +54,6 @@ const productsSlice = createSlice({
                 product.price = action.payload.price
                 product.name = action.payload.name
             }
-
         },
         [addProduct.fulfilled] (state, action) {
             state.addingErrors = []
@@ -65,7 +63,6 @@ const productsSlice = createSlice({
             } else {
                 state.entities.push(action.payload)
             }
-
         }
     }
 })

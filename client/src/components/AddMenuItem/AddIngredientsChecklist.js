@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, Typography } from "@material-ui/core";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
 import FormGroup from "@material-ui/core/FormGroup";
 import { useSelector, useDispatch } from "react-redux";
 

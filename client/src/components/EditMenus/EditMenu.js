@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editMenuName } from "../../reducers/menusSlice";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core"
@@ -39,7 +38,6 @@ function EditMenu({ name, id, setAlertShow }) {
 
     return(
         <>
-
 
         <div style={{display: 'inline-block'}}>
         {!menuEditing ? <div style={{display: 'inline-block'}}><Button variant="contained" color="secondary" size='small' onClick={handleDelete}>Delete</Button>{' '}<Button onClick={handleEditClick} variant="contained" color="primary" size='small'>Edit</Button></div> : <div style={{display:'inline-block'}}><Button onClick={handleSubmit}>Save</Button><Button onClick={handleCancel}>Cancel</Button></div>}
