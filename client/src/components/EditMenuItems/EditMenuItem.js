@@ -41,7 +41,7 @@ function EditMenuItem({ item }) {
     // Resets editing state if different menu item  is selected from parent dropdown
     useEffect(() => {
         // Calculate price of menu item from ingredients
-        setPrice(calculatePrice(item))
+        setPrice(String(calculatePrice(item)))
 
         setMenuEditing(false)
         setNameEditing(false)

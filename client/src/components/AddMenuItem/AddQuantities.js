@@ -10,6 +10,7 @@ function AddQuantities() {
     return (
         <>
             <Title>Add quantities to selected ingredients</Title>
+            {!ingredients.length > 0  ? 'No ingredients selected' : null}
             {ingredients?.map(ingredient => <AddQuantityToIngredient ingredient={ingredient}/>)}
 
         </>

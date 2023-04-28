@@ -55,7 +55,16 @@ const menuItemsSlice = createSlice({
     }, 
     extraReducers: {
         [addMenuItem.fulfilled] (state, action) {
-            state.entities.push(action.payload)
+
+            state.nameErrors = ''
+
+            if (action.payload.errors) {
+                state.nameErrors = action.payload.errors[0]
+            } else {
+                state.entities.push(action.payload)
+            }
+
+            
         },
         [fetchMenuItems.fulfilled] (state, action) {
             state.entities = action.payload

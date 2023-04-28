@@ -22,6 +22,7 @@ function AddMenuItem() {
     const dispatch = useDispatch()
     const name = useSelector(state => state.ingredientsSelected.name)
     const pendingData = useSelector(state => state.ingredientsSelected)
+    const errors = useSelector(state => state.menuItems.nameErrors)
 
     function handleSubmit() {
       dispatch(addMenuItem(pendingData))
@@ -53,7 +54,7 @@ function AddMenuItem() {
             case 0:
                 return (
                     <div>
-                    <TextField value={name} onChange={e => dispatch(assignName(e.target.value))} label="Enter name for new menu item" style={{width: "50ch"}}/>
+                    <TextField required value={name} onChange={e => dispatch(assignName(e.target.value))} label="Enter name for new menu item" style={{width: "50ch"}} helperText='Required'/>
                     </div>
                 )
             case 1:
@@ -119,10 +120,10 @@ function AddMenuItem() {
         {activeStep === steps.length ? (
           <div>
             <Typography className={classes.instructions}>
-              Menu Item added!
+              {errors ? <div><p>Unable to save menu item: {errors}</p><p>Adding a name for the menu item is the only required step to save the new menu item. You can assign a menu and edit ingredients later. </p></div> : 'Menu Item Added!'}
             </Typography>
             <Button onClick={handleReset} className={classes.button}>
-              Add another item
+              {errors ? 'Add name' : "Add another item"}
             </Button>
           </div>
         ) : (
