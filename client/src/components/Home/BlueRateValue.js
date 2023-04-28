@@ -34,11 +34,6 @@ function BlueRateValue({ blue }) {
       <Typography color="textSecondary" className={classes.depositContext}>
         Last updated: {dateString}
       </Typography>
-      {/* <div>
-        <Link color="primary" href="#" onClick={preventDefault}>
-          View balance
-        </Link>
-      </div> */}
     </React.Fragment>
   );
 }
