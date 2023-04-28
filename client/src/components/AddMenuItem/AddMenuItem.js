@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+
+import { useEffect } from "react";
 import AddIngredientsChecklist from "./AddIngredientsChecklist";
 import AddMenuToMenuItem from "./AddMenuToMenuItem";
 import AddQuantities from "./AddQuantities";
-
 import { assignName, clearPendingData } from "../../reducers/ingredientsSlice";
 import { addMenuItem } from "../../reducers/menuItemsSlice";
 import React from 'react';
@@ -15,19 +15,37 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Container, TextField } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
+import { fetchProducts } from "../../reducers/productsSlice";
+import { fetchMenus } from "../../reducers/menusSlice"
 
 
 function AddMenuItem() {
 
     const dispatch = useDispatch()
     const name = useSelector(state => state.ingredientsSelected.name)
+    const products = useSelector(state => state.products.entities)
+    const menus = useSelector(state => state.menus.entities)
     const pendingData = useSelector(state => state.ingredientsSelected)
     const errors = useSelector(state => state.menuItems.nameErrors)
 
+    useEffect(() => {
+      if (!products.length > 0) {
+        dispatch(fetchProducts())
+      }
+      if (!menus.length > 0) {
+        dispatch(fetchMenus())
+      }
+
+    }, [dispatch])
+
     function handleSubmit() {
       dispatch(addMenuItem(pendingData))
-      dispatch(clearPendingData())
-      console.log('dispatched clear pending data')
+
+      debugger
+
+      if (pendingData.name) {
+        dispatch(clearPendingData())
+      }
     }
 
     const useStyles = makeStyles((theme) => ({

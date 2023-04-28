@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { deleteIngredient, ingredientEdited } from "./ingredientsSlice"
 import { newIngredient } from "./ingredientsSlice"
+import { useDispatch } from "react-redux"
+import { clearPendingData } from "./ingredientsSlice"
 
 export const fetchMenuItems = createAsyncThunk('menuItems/fetchMenuItems', async () => {
     return fetch('/menu_items')

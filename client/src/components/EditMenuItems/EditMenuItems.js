@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from "@material-ui/core";
+import { fetchProducts } from "../../reducers/productsSlice";
 
 
 function EditMenuItems() {
@@ -16,9 +17,14 @@ function EditMenuItems() {
     const dispatch = useDispatch()
     const menuItems = useSelector(state => state.menuItems.entities)
     const selectedItem = useSelector(state => state.menuItems.selectedItem)
+    const products = useSelector(state => state.products.entities)
+
 
     useEffect(() => {
         dispatch(fetchMenuItems())
+        if (!products.length > 0) {
+            dispatch(fetchProducts())
+        }
     }, [dispatch])
 
     function handleChange(e) {
